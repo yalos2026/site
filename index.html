@@ -2,176 +2,404 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>ИК Ялос — Цветные индикаторы</title>
+  <title>GP film</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
+  <!-- КИНОШНЫЙ ШРИФТ -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0a0a0a;
-      color: #fff;
+      font-family: 'Inter', sans-serif;
+      background: #000033;
+      color: white;
     }
 
-    header {
-      padding: 20px 40px;
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+    }
+
+    /* ===== НОВАЯ НАВИГАЦИЯ СЛЕВА ВВЕРХУ ===== */
+    .top-bar {
+      background: #000033;
+      padding: 15px 30px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #222;
     }
 
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
-      color: #00ffe0;
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Маленький логотип под надписью GP Film */
+    .small-logo {
+      width: 45px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .logo-area h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
     }
 
     nav a {
-      margin-left: 20px;
+      color: white;
       text-decoration: none;
-      color: #ccc;
+      opacity: 0.7;
       transition: 0.3s;
+      font-size: 16px;
     }
 
     nav a:hover {
-      color: #00ffe0;
+      opacity: 1;
     }
 
-    .hero {
-      text-align: center;
-      padding: 120px 20px;
+    /* ===== СЛАЙД-ШОУ ===== */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      height: 70vh;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ff88);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .mySlides {
+      display: none;
+      width: 100%;
+      height: 100%;
     }
 
-    .hero p {
-      color: #aaa;
-      margin-top: 20px;
-      font-size: 18px;
+    .mySlides img {
+      width: 100%;
+      height: 70vh;
+      object-fit: cover;
     }
 
-    .btn {
-      margin-top: 30px;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(90deg, #00ffe0, #ff00ff);
-      color: #000;
-      font-weight: bold;
+    /* Кнопки вперёд/назад */
+    .prev, .next {
       cursor: pointer;
-    }
-
-    .section {
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #111;
-      padding: 30px;
-      border-radius: 20px;
-      width: 250px;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
       transition: 0.3s;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Текст на слайде */
+    .slide-text {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      font-size: 28px;
+      font-family: 'Playfair Display', serif;
+      background: rgba(0,0,0,0.6);
+      padding: 15px;
+      z-index: 10;
+    }
+
+    /* Точки навигации */
+    .dots {
+      text-align: center;
+      padding: 20px;
+      background: #000033;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #555;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .active-dot, .dot:hover {
+      background-color: #ff6b6b;
+    }
+
+    /* Анимация появления слайдов */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1s;
+    }
+
+    @keyframes fade {
+      from {opacity: 0.4;}
+      to {opacity: 1;}
+    }
+
+    /* Остальные секции */
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project {
+      background: #111;
       border: 1px solid #222;
+      transition: 0.3s;
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: #00ffe0;
+    .project:hover {
+      transform: scale(1.03);
     }
 
-    .indicator {
-      font-size: 40px;
-      margin-bottom: 15px;
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
-    .green { color: #00ff88; }
-    .red { color: #ff3b3b; }
-    .yellow { color: #ffd000; }
+    .project div {
+      padding: 20px;
+    }
 
     footer {
       text-align: center;
       padding: 40px;
-      color: #666;
+      background: black;
       border-top: 1px solid #222;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      .slide-text {
+        font-size: 18px;
+        bottom: 15px;
+      }
+      .prev, .next {
+        padding: 10px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">ИК Ялос</div>
+<!-- НАВИГАЦИЯ СВЕРХУ СЛЕВА -->
+<div class="top-bar">
+  <div class="logo-area">
+    <!-- Маленький логотип слева под надписью GP Film -->
+    <img class="small-logo" src="https://cdn-icons-png.flaticon.com/512/106/106403.png" alt="Логотип">
+    <h1>GP film</h1>
+  </div>
   <nav>
-    <a href="#">Главная</a>
-    <a href="#">Индикаторы</a>
-    <a href="#">О компании</a>
-    <a href="#">Контакты</a>
+    <a href="#about">О нас</a>
+    <a href="#projects">Проекты</a>
+    <a href="#scenary">Сценарное агентство</a>
+    <a href="#contacts">Контакты</a>
   </nav>
-</header>
+</div>
 
-<section class="hero">
-  <h1>Цветные индикаторы нового поколения</h1>
-  <p>Надёжные решения для визуализации процессов и сигнализации</p>
-  <button class="btn">Связаться с нами</button>
+<!-- СЛАЙД-ШОУ ИЗ КАЧЕСТВЕННЫХ КАДРОВ ФИЛЬМОВ -->
+<div class="slideshow-container">
+  
+  <div class="mySlides fade">
+    <img src="https://images.hdqwalls.com/download/interstellar-2014-4k-mb-3840x2160.jpg" alt="Интерстеллар">
+    <div class="slide-text">🎬 Интерстеллар — Путешествие за пределы</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://images7.alphacoders.com/133/1330785.jpeg" alt="Дюна">
+    <div class="slide-text">🏜️ Дюна — Величие пустыни Арракис</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://images.hdqwalls.com/download/joker-2019-joaquin-phoenix-4k-87-3840x2160.jpg" alt="Джокер">
+    <div class="slide-text">🤡 Джокер — История хаоса</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://images.alphacoders.com/131/1316138.jpeg" alt="Оппенгеймер">
+    <div class="slide-text">🔥 Оппенгеймер — Творец разрушения</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://images.hdqwalls.com/download/blade-runner-2049-4k-55-3840x2160.jpg" alt="Бегущий по лезвию 2049">
+    <div class="slide-text">🌆 Бегущий по лезвию 2049 — Неоновая антиутопия</div>
+  </div>
+
+  <a class="prev" onclick="changeSlide(-1)">❮</a>
+  <a class="next" onclick="changeSlide(1)">❯</a>
+</div>
+
+<div class="dots">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<section id="about">
+  <h2>О нас</h2>
+  <p>
+    Группа компаний GP активно работает на российском кино- и теле- рынке с 1999 года и сотрудничает с Первым каналом и Россия.
+    В Группу компаний GP входят:
+    Кинокомпания «Джи Пи» - производство кино и телефильмов.
+    Компания «Инотэк» студия «пост-продакшн». 
+  </p>
 </section>
 
-<section class="section">
-  <h2>Наши индикаторы</h2>
-
-  <div class="cards">
-    <div class="card">
-      <div class="indicator green">●</div>
-      <h3>Зелёный</h3>
-      <p>Нормальное состояние системы</p>
+<section id="projects">
+  <h2>Проекты</h2>
+  <div class="projects">
+    <div class="project">
+      <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" alt="">
+      <div>
+        <h3>Фильм 1</h3>
+        <p>Драматическая история о выборе и судьбе</p>
+      </div>
     </div>
-
-    <div class="card">
-      <div class="indicator yellow">●</div>
-      <h3>Жёлтый</h3>
-      <p>Предупреждение / внимание</p>
+    <div class="project">
+      <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba" alt="">
+      <div>
+        <h3>Фильм 2</h3>
+        <p>Кинематографичный артхаус проект</p>
+      </div>
     </div>
-
-    <div class="card">
-      <div class="indicator red">●</div>
-      <h3>Красный</h3>
-      <p>Авария / критическое состояние</p>
+    <div class="project">
+      <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66" alt="">
+      <div>
+        <h3>Фильм 3</h3>
+        <p>История о человеке и времени</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <h2>О компании</h2>
-  <p style="max-width:600px;margin:20px auto;color:#aaa;">
-    ИК Ялос — разработчик и поставщик систем цветовой индикации.
-    (Здесь вставь текст со своего старого сайта)
-  </p>
+<section id="scenary">
+  <h2>Сценарное агентство</h2>
+  <p>Уважаемые сценаристы, обращаем ваше внимание на то, что в первую очередь мы рассматриваем заявки, оформленные в соответствии со следующими критериями:</p>
+  <p>1. В теме письма обязательно указывается «Название» и «Формат, жанр»</p>
+  <p>2. В самой заявке обязательно указываются следующие параметры:</p>
+  <p>a. Имя автора(-ов) и контактные данные</p>
+  <p>b. Название проекта</p>
+  <p>c. Формат, жанр</p>
+  <p>d. Хронометраж</p>
+  <p>e. Аудитория</p>
+  <p>f. Краткий синопсис</p>
+  <p>g. Развернутый синопсис/заявка</p>
+  <p>h. Описание главных героев</p>
+  <p>Заявки на полнометражные, телевизионные фильмы, а также на анимационные фильмы и сериалы присылайте по адресу kino@gpfilm.ru</p>
 </section>
 
-<section class="section">
+<section id="contacts">
   <h2>Контакты</h2>
-  <p style="color:#aaa;">
-    Email: info@yalosindicator.com <br>
-    Телефон: +7 XXX XXX-XX-XX
-  </p>
+  <p>Email: kino@gpfilm.ru</p>
+  <p>119019, Москва, Гоголевский бульвар, дом 17, строение 1, офис 400</p>
+  <p>Телефоны: 8(495)6371201, 8(495)6371208</p>
+  <p>Генеральный продюсер - Президент Группы Компаний GP</p>
+  <p>Семенцева Галина Николаевна</p>
+  <p>Продюсер - Генеральный Директор ООО "Кинокомпания "Джи Пи"</p>
+  <p>Михалева Валентина Ефимовна</p>
+  <p>Креативный продюсер</p>
+  <p>Карахан Лев Маратович</p>
 </section>
 
 <footer>
-  © 2026 ИК Ялос. Все права защищены.
+  © 2026 Кинокомпания Джи Пи
 </footer>
+
+<script>
+  let slideIndex = 1;
+  let slideTimer;
+
+  function showSlides(n) {
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+    
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active-dot", "");
+    }
+    
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active-dot";
+  }
+
+  function changeSlide(n) {
+    clearTimeout(slideTimer);
+    showSlides(slideIndex += n);
+    startAutoSlide();
+  }
+
+  function currentSlide(n) {
+    clearTimeout(slideTimer);
+    showSlides(slideIndex = n);
+    startAutoSlide();
+  }
+
+  function startAutoSlide() {
+    slideTimer = setTimeout(() => {
+      changeSlide(1);
+    }, 5000);
+  }
+
+  // Запускаем слайд-шоу
+  showSlides(slideIndex);
+  startAutoSlide();
+</script>
 
 </body>
 </html>
