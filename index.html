@@ -186,6 +186,8 @@
       background: #111;
       border: 1px solid #222;
       transition: 0.3s;
+      width: 50%;              /* карточка в два раза уже */
+      margin: 0 auto;          /* центрирование */
     }
 
     .project:hover {
@@ -193,10 +195,11 @@
     }
 
     .project img {
-      width: 50%;
+      width: 100%;             /* заполняет всю карточку */
       height: auto;
-      aspect-ratio: 2 / 3;     /* вертикальный формат как у постера */
+      aspect-ratio: 2 / 3;     /* вертикальный формат (портрет) */
       object-fit: cover;
+      display: block;
     }
 
     .project div {
