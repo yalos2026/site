@@ -260,7 +260,7 @@ nav a:hover::after{
   position:absolute;
 
   left:8%;
-  up:12%;
+  bottom:12%;
 
   z-index:20;
 
@@ -625,16 +625,14 @@ footer{
 
 }
 
-@keyframes slideReveal{
-
-  from{
-    opacity:0;
-    transform:translateY(40px);
+@keyframes slideReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px); /* старт чуть выше финальной позиции */
   }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
+  100% {
+    opacity: 1;
+    transform: translateY(0);     /* конечная точка */
   }
 
 }
