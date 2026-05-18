@@ -244,10 +244,11 @@ nav a:hover::after{
 
   object-fit:cover;
 
-  object-position:center 18%;
+  object-position:center center;
 
-  animation:
-  cinemaZoom 18s ease-in-out infinite;
+  transform:scale(1);
+
+  transition:transform 8s ease;
 }
 
 /* ===================================================== */
@@ -620,19 +621,7 @@ footer{
 /* ANIMATIONS */
 /* ===================================================== */
 
-@keyframes cinemaZoom{
 
-  0%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.03);
-  }
-
-  100%{
-    transform:scale(1);
-  }
 
 }
 
