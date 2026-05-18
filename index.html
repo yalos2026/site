@@ -237,17 +237,16 @@ nav a:hover::after{
   animation:fade 1.4s ease;
 }
 
-.mySlides img{
-
-  width:80%;
-  height:80%;
-
-  object-fit:cover;
-
-  object-position:center center;
-
-  transform:scale(1);
-
+.mySlides img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;           /* ← занимаем почти весь экран, но оставляем воздух */
+  height: 90%;
+  object-fit: cover;
+  object-position: center center;
+  transform: translate(-50%, -50%) scale(0.9); /* ← центрирование + лёгкое отдаление */
+  transition: transform 8s ease;
 }
 
 /* ===================================================== */
