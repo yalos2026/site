@@ -504,6 +504,45 @@ section h2::after{
   .slideshow-container { height: 45vh; }
   nav a { font-size: 11px; }
   .project-content h3 { font-size: 18px; }
+
+/* ===== FIX: OVERLAP & DUPLICATION ON MOBILE ===== */
+#projects {
+  padding-bottom: 100px !important; /* запас снизу, чтобы карточки не касались следующей секции */
+  position: relative;
+  z-index: 1;
+}
+
+.projects {
+  gap: 24px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.project {
+  overflow: hidden !important;       /* жёстко обрезаем всё, что выходит за границы */
+  position: relative;
+  z-index: 2;
+  isolation: isolate;                /* создаём независимый контекст наложения */
+  contain: layout style;             /* браузер оптимизирует отрисовку, убирает артефакты */
+}
+
+.project-content {
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 5;
+  pointer-events: none;              /* текст не перехватывает клики/тапы */
+}
+
+.project-content h3,
+.project-content p {
+  pointer-events: auto;              /* возвращаем клики только тексту */
+}
+
+/* Гарантируем, что ховер-эффекты не ломают вёрстку на тач-устройствах */
+.project:hover {
+  transform: none !important;        /* убираем сдвиг вверх на мобильных */
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
   }
   
