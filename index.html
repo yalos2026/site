@@ -573,34 +573,41 @@ section h2::after{
 /* PROJECT TEXT */
 /* ===================================================== */
 
-.project-content{
-
-  position:absolute;
-
-  left:40px;
-  bottom:40px;
-
-  z-index:5;
+.project-content {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  z-index: 5;
+  transition: all 0.4s ease;
 }
 
-.project-content h3{
-
-  font-family:'Cinzel',serif;
-
-  font-size:22px;
-
-  letter-spacing:3px;
-
-  margin-bottom:10px;
+.project-content h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;        /* ← чуть меньше для красоты */
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  transition: all 0.4s ease;
 }
 
-.project-content p{
+.project-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 280px;
+  opacity: 0;             /* ← скрыто по умолчанию */
+  transform: translateY(20px); /* ← смещено вниз */
+  transition: all 0.4s ease 0.1s; /* ← плавное появление с задержкой */
+  color: rgba(255, 255, 255, 0.85);
+}
 
-  opacity:.72;
+/* При наведении на карточку показываем описание */
+.project:hover .project-content h3 {
+  transform: translateY(-10px);  /* ← заголовок чуть вверх */
+  margin-bottom: 15px;
+}
 
-  line-height:1.7;
-
-  max-width:320px;
+.project:hover .project-content p {
+  opacity: 1;             /* ← показываем текст */
+  transform: translateY(0); /* ← возвращаем на место */
 }
 
 /* ===================================================== */
@@ -913,6 +920,7 @@ footer{
       <div class="project-content">
 
         <h3>КРОТКАЯ</h3>
+         <p>Художественный фильм, драма. 2017 год.</p>
         
       </div>
 
