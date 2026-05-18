@@ -445,16 +445,27 @@ section h2::after{
 /* PROJECTS */
 /* ===================================================== */
 
-.projects{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(420px,1fr));
-
-  gap:45px;
+  
+  .projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ← ровно 3 колонки */
+  gap: 45px;
 }
 
+/* Планшеты — 2 колонки */
+@media (max-width: 1200px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Мобильные — 1 колонка */
+@media (max-width: 768px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+  
 /* ===================================================== */
 /* PROJECT CARD */
 /* ===================================================== */
