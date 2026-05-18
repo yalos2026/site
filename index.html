@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GP FILM — VERSION II</title>
+<title>GP FILM</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -33,7 +33,7 @@ body{
 }
 
 /* ===================================================== */
-/* CINEMATIC BACKGROUND */
+/* BACKGROUND */
 /* ===================================================== */
 
 body::before{
@@ -42,8 +42,9 @@ body::before{
   inset:0;
 
   background:
-  radial-gradient(circle at top, rgba(42,82,255,.18), transparent 40%),
-  radial-gradient(circle at bottom, rgba(0,80,255,.12), transparent 30%);
+  radial-gradient(circle at top,
+  rgba(42,82,255,.15),
+  transparent 40%);
 
   pointer-events:none;
   z-index:-3;
@@ -59,7 +60,7 @@ body::after{
   background-image:
   url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 
-  opacity:.07;
+  opacity:.06;
 
   animation:grain 8s steps(10) infinite;
 
@@ -69,29 +70,12 @@ body::after{
 
 @keyframes grain{
 
-  0%{
-    transform:translate(0,0);
-  }
-
-  20%{
-    transform:translate(-5%,5%);
-  }
-
-  40%{
-    transform:translate(5%,-5%);
-  }
-
-  60%{
-    transform:translate(-3%,3%);
-  }
-
-  80%{
-    transform:translate(3%,-3%);
-  }
-
-  100%{
-    transform:translate(0,0);
-  }
+  0%{transform:translate(0,0);}
+  20%{transform:translate(-5%,5%);}
+  40%{transform:translate(5%,-5%);}
+  60%{transform:translate(-3%,3%);}
+  80%{transform:translate(3%,-3%);}
+  100%{transform:translate(0,0);}
 
 }
 
@@ -115,8 +99,8 @@ body::after{
 
   z-index:1000;
 
-  background:rgba(0,0,0,.28);
-  backdrop-filter:blur(18px);
+  background:rgba(0,0,0,.2);
+  backdrop-filter:blur(16px);
 
   border-bottom:
   1px solid rgba(255,255,255,.05);
@@ -130,11 +114,12 @@ body::after{
 }
 
 .small-logo{
+
   width:48px;
-  border-radius:12px;
+  border-radius:10px;
 
   box-shadow:
-  0 0 35px rgba(58,114,255,.4);
+  0 0 30px rgba(58,114,255,.3);
 }
 
 .logo-area h1{
@@ -143,8 +128,6 @@ body::after{
 
   font-size:28px;
   letter-spacing:6px;
-
-  font-weight:700;
 }
 
 nav{
@@ -161,10 +144,10 @@ nav a{
 
   opacity:.72;
 
-  transition:.5s;
+  transition:.4s;
 
-  letter-spacing:2px;
   font-size:14px;
+  letter-spacing:2px;
 }
 
 nav a:hover{
@@ -176,6 +159,7 @@ nav a::after{
   content:"";
 
   position:absolute;
+
   left:0;
   bottom:-8px;
 
@@ -192,194 +176,178 @@ nav a:hover::after{
 }
 
 /* ===================================================== */
-/* HERO */
+/* SLIDESHOW */
 /* ===================================================== */
 
-.hero{
+.slideshow-container{
 
   position:relative;
 
+  width:100%;
   height:100vh;
+
   overflow:hidden;
-
-  display:flex;
-  align-items:center;
-
-  padding-left:8%;
 }
 
-.hero video,
-.hero img{
+.mySlides{
+
+  display:none;
 
   position:absolute;
-  inset:0;
+
+  width:100%;
+  height:100%;
+
+  animation:fade 1.4s ease;
+}
+
+.mySlides img{
 
   width:100%;
   height:100%;
 
   object-fit:cover;
 
-  filter:
-  brightness(.38)
-  contrast(1.1)
-  saturate(.9);
-
-  transform:scale(1.03);
-
-  animation:heroZoom 18s linear infinite;
-
-}
-
-/* cinematic overlays */
-
-.hero::before{
-
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(to right,
-  rgba(0,0,0,.88),
-  rgba(0,0,0,.35),
-  transparent 70%);
-
-  z-index:2;
-}
-
-.hero::after{
-
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-  radial-gradient(circle at center,
-  transparent,
-  rgba(0,0,0,.8));
-
-  z-index:2;
+  animation:cinemaZoom 14s linear infinite;
 }
 
 /* ===================================================== */
-/* HERO CONTENT */
+/* TEXT */
 /* ===================================================== */
 
-.hero-content{
+.slide-text{
 
-  position:relative;
-  z-index:10;
+  position:absolute;
 
-  max-width:760px;
+  left:8%;
+  bottom:12%;
 
-  animation:heroReveal 2s ease;
+  z-index:20;
+
+  animation:slideReveal 1.8s ease;
 }
 
-.hero-subtitle{
+.slide-subtitle{
 
-  color:#7fa8ff;
+  color:#89a8ff;
 
   letter-spacing:4px;
 
   margin-bottom:18px;
 
-  opacity:.75;
+  opacity:.9;
+
+  font-size:14px;
 }
 
-.hero h1{
+.slide-text h2{
 
   font-family:'Cinzel',serif;
 
-  font-size:92px;
-  line-height:1;
+  font-size:82px;
 
-  letter-spacing:8px;
+  line-height:1.05;
 
-  margin-bottom:30px;
+  letter-spacing:7px;
 
   text-shadow:
-  0 0 40px rgba(90,130,255,.2);
-}
-
-.hero p{
-
-  max-width:560px;
-
-  line-height:1.9;
-
-  opacity:.78;
-
-  margin-bottom:45px;
+  0 0 30px rgba(0,0,0,.25);
 }
 
 /* ===================================================== */
-/* BUTTONS */
+/* ARROWS */
 /* ===================================================== */
 
-.hero-buttons{
-  display:flex;
-  gap:20px;
-}
-
-.btn{
-
-  position:relative;
-
-  overflow:hidden;
-
-  padding:16px 34px;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  background:rgba(255,255,255,.05);
-
-  color:white;
-
-  text-decoration:none;
-
-  letter-spacing:2px;
-
-  backdrop-filter:blur(10px);
-
-  transition:.5s;
-}
-
-.btn:hover{
-
-  transform:translateY(-3px);
-
-  box-shadow:
-  0 0 45px rgba(72,112,255,.25);
-
-  border-color:
-  rgba(127,168,255,.35);
-}
-
-.btn::before{
-
-  content:"";
+.prev,
+.next{
 
   position:absolute;
 
-  top:0;
-  left:-100%;
+  top:50%;
 
-  width:100%;
-  height:100%;
+  transform:translateY(-50%);
+
+  width:60px;
+  height:60px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   background:
-  linear-gradient(to right,
-  transparent,
-  rgba(255,255,255,.15),
-  transparent);
+  rgba(0,0,0,.18);
 
-  transition:1s;
+  backdrop-filter:blur(10px);
+
+  color:white;
+
+  font-size:28px;
+
+  cursor:pointer;
+
+  z-index:50;
+
+  transition:.4s;
 }
 
-.btn:hover::before{
-  left:100%;
+.prev{
+  left:25px;
+}
+
+.next{
+  right:25px;
+}
+
+.prev:hover,
+.next:hover{
+
+  background:
+  rgba(255,255,255,.12);
+
+  transform:
+  translateY(-50%)
+  scale(1.08);
+}
+
+/* ===================================================== */
+/* DOTS */
+/* ===================================================== */
+
+.dots{
+
+  position:absolute;
+
+  bottom:40px;
+
+  width:100%;
+
+  text-align:center;
+
+  z-index:100;
+}
+
+.dot{
+
+  width:10px;
+  height:10px;
+
+  margin:0 6px;
+
+  border-radius:50%;
+
+  display:inline-block;
+
+  background:
+  rgba(255,255,255,.4);
+
+  transition:.4s;
+}
+
+.active-dot{
+
+  background:white;
+
+  transform:scale(1.4);
 }
 
 /* ===================================================== */
@@ -387,8 +355,6 @@ nav a:hover::after{
 /* ===================================================== */
 
 section{
-
-  position:relative;
 
   padding:140px 8%;
 }
@@ -425,6 +391,21 @@ section h2::after{
 }
 
 /* ===================================================== */
+/* TEXT BLOCK */
+/* ===================================================== */
+
+.text-block{
+
+  max-width:900px;
+
+  line-height:2;
+
+  opacity:.82;
+
+  font-size:18px;
+}
+
+/* ===================================================== */
 /* PROJECTS */
 /* ===================================================== */
 
@@ -436,8 +417,6 @@ section h2::after{
   repeat(auto-fit,minmax(320px,1fr));
 
   gap:45px;
-
-  perspective:1500px;
 }
 
 /* ===================================================== */
@@ -456,11 +435,10 @@ section h2::after{
   border:
   1px solid rgba(255,255,255,.05);
 
-  backdrop-filter:blur(16px);
+  backdrop-filter:blur(14px);
 
   transform:
-  translateY(100px)
-  rotateX(12deg);
+  translateY(100px);
 
   opacity:0;
 
@@ -468,7 +446,7 @@ section h2::after{
   1s cubic-bezier(.17,.85,.438,.99);
 
   box-shadow:
-  0 20px 60px rgba(0,0,0,.5);
+  0 20px 60px rgba(0,0,0,.45);
 }
 
 .project.show{
@@ -476,18 +454,16 @@ section h2::after{
   opacity:1;
 
   transform:
-  translateY(0)
-  rotateX(0deg);
+  translateY(0);
 }
 
 .project:hover{
 
   transform:
-  translateY(-15px)
-  scale(1.02);
+  translateY(-12px);
 
   box-shadow:
-  0 0 90px rgba(64,104,255,.18);
+  0 0 80px rgba(64,104,255,.18);
 }
 
 /* IMAGE */
@@ -499,11 +475,7 @@ section h2::after{
 
   object-fit:cover;
 
-  transition:1.4s ease;
-
-  filter:
-  brightness(.82)
-  contrast(1.08);
+  transition:1.2s ease;
 }
 
 .project:hover img{
@@ -511,7 +483,7 @@ section h2::after{
   transform:scale(1.08);
 }
 
-/* BLACK CINEMATIC OVERLAY */
+/* BLACK OVERLAY */
 
 .project::before{
 
@@ -522,40 +494,11 @@ section h2::after{
 
   background:
   linear-gradient(to top,
-  rgba(0,0,0,.98),
-  rgba(0,0,0,.2),
+  rgba(0,0,0,.96),
+  rgba(0,0,0,.15),
   transparent);
 
   z-index:2;
-}
-
-/* BLUE SCAN */
-
-.project::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:-100%;
-  left:0;
-
-  width:100%;
-  height:200%;
-
-  background:
-  linear-gradient(to bottom,
-  transparent,
-  rgba(90,140,255,.08),
-  transparent);
-
-  transform:rotate(8deg);
-
-  transition:1.2s;
-}
-
-.project:hover::after{
-  top:100%;
 }
 
 /* TEXT */
@@ -567,7 +510,7 @@ section h2::after{
   left:30px;
   bottom:30px;
 
-  z-index:4;
+  z-index:5;
 }
 
 .project-content h3{
@@ -578,12 +521,12 @@ section h2::after{
 
   letter-spacing:3px;
 
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .project-content p{
 
-  opacity:.7;
+  opacity:.72;
 
   line-height:1.7;
 
@@ -591,27 +534,10 @@ section h2::after{
 }
 
 /* ===================================================== */
-/* INFO TEXT */
-/* ===================================================== */
-
-.text-block{
-
-  max-width:900px;
-
-  font-size:18px;
-
-  line-height:2;
-
-  opacity:.82;
-}
-
-/* ===================================================== */
 /* FOOTER */
 /* ===================================================== */
 
 footer{
-
-  position:relative;
 
   padding:70px;
 
@@ -629,11 +555,23 @@ footer{
 /* ANIMATIONS */
 /* ===================================================== */
 
-@keyframes heroReveal{
+@keyframes cinemaZoom{
+
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.08);
+  }
+
+}
+
+@keyframes slideReveal{
 
   from{
     opacity:0;
-    transform:translateY(60px);
+    transform:translateY(40px);
   }
 
   to{
@@ -643,14 +581,14 @@ footer{
 
 }
 
-@keyframes heroZoom{
+@keyframes fade{
 
   from{
-    transform:scale(1.03);
+    opacity:.4;
   }
 
   to{
-    transform:scale(1.12);
+    opacity:1;
   }
 
 }
@@ -671,8 +609,8 @@ footer{
     justify-content:center;
   }
 
-  .hero h1{
-    font-size:56px;
+  .slide-text h2{
+    font-size:44px;
   }
 
   section h2{
@@ -711,44 +649,81 @@ footer{
 </div>
 
 <!-- ===================================================== -->
-<!-- HERO -->
+<!-- SLIDESHOW -->
 <!-- ===================================================== -->
 
-<section class="hero">
+<div class="slideshow-container">
 
-  <!-- можешь заменить на video -->
-  <img src="images/logotype1.jpg">
+  <!-- SLIDE 1 -->
 
-  <div class="hero-content">
+  <div class="mySlides fade">
 
-    <div class="hero-subtitle">
-      CINEMATIC ARCHIVE • EST. 1999
-    </div>
+    <img src="images/logotype1.jpg">
 
-    <h1>
-      GP FILM
-    </h1>
+    <div class="slide-text">
 
-    <p>
-      Производство авторского кино, сериалов и визуальных историй.
-      Архив времени, памяти и человеческих состояний.
-    </p>
+      <div class="slide-subtitle">
+        CINEMATIC ARCHIVE • EST. 1999
+      </div>
 
-    <div class="hero-buttons">
-
-      <a href="#projects" class="btn">
-        ПРОЕКТЫ
-      </a>
-
-      <a href="#contacts" class="btn">
-        КОНТАКТЫ
-      </a>
+      <h2>GP FILM</h2>
 
     </div>
 
   </div>
 
-</section>
+  <!-- SLIDE 2 -->
+
+  <div class="mySlides fade">
+
+    <img src="images/1.jpeg">
+
+    <div class="slide-text">
+
+      <div class="slide-subtitle">
+        FEATURE FILM
+      </div>
+
+      <h2>ЗА 5 МИНУТ ДО ЯНВАРЯ</h2>
+
+    </div>
+
+  </div>
+
+  <!-- SLIDE 3 -->
+
+  <div class="mySlides fade">
+
+    <img src="images/kino3.jpg">
+
+    <div class="slide-text">
+
+      <div class="slide-subtitle">
+        DRAMA SERIES
+      </div>
+
+      <h2>ЧАСТНЫЙ ЗАКАЗ</h2>
+
+    </div>
+
+  </div>
+
+  <!-- ARROWS -->
+
+  <a class="prev" onclick="changeSlide(-1)">❮</a>
+  <a class="next" onclick="changeSlide(1)">❯</a>
+
+  <!-- DOTS -->
+
+  <div class="dots">
+
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+
+  </div>
+
+</div>
 
 <!-- ===================================================== -->
 <!-- ABOUT -->
@@ -763,10 +738,14 @@ footer{
     Группа компаний GP активно работает
     на российском кино- и теле-рынке с 1999 года.
 
+    <br><br>
+
     Компания занимается производством
-    фильмов, сериалов и визуальных проектов,
-    объединяя авторскую атмосферу,
-    кинематографичный стиль и современный подход.
+    художественных фильмов,
+    сериалов и визуальных проектов,
+    объединяя авторский стиль,
+    кинематографичную атмосферу
+    и современные технологии.
 
   </div>
 
@@ -894,7 +873,7 @@ footer{
 <script>
 
 /* ===================================================== */
-/* CINEMATIC REVEAL */
+/* REVEAL ANIMATION */
 /* ===================================================== */
 
 const projects = document.querySelectorAll('.project');
@@ -922,20 +901,75 @@ projects.forEach(project => {
 });
 
 /* ===================================================== */
-/* MOUSE PARALLAX */
+/* SLIDER */
 /* ===================================================== */
 
-const hero = document.querySelector('.hero');
+let slideIndex = 1;
+let slideTimer;
 
-hero.addEventListener('mousemove', (e)=>{
+showSlides(slideIndex);
+startAutoSlide();
 
-  const x = (window.innerWidth / 2 - e.pageX) / 40;
-  const y = (window.innerHeight / 2 - e.pageY) / 40;
+function changeSlide(n){
 
-  hero.style.transform =
-  `translateX(${x}px) translateY(${y}px)`;
+  clearTimeout(slideTimer);
 
-});
+  showSlides(slideIndex += n);
+
+  startAutoSlide();
+
+}
+
+function currentSlide(n){
+
+  clearTimeout(slideTimer);
+
+  showSlides(slideIndex = n);
+
+  startAutoSlide();
+
+}
+
+function showSlides(n){
+
+  let slides =
+  document.getElementsByClassName("mySlides");
+
+  let dots =
+  document.getElementsByClassName("dot");
+
+  if(n > slides.length){
+    slideIndex = 1;
+  }
+
+  if(n < 1){
+    slideIndex = slides.length;
+  }
+
+  for(let i = 0; i < slides.length; i++){
+    slides[i].style.display = "none";
+  }
+
+  for(let i = 0; i < dots.length; i++){
+    dots[i].classList.remove("active-dot");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+
+  dots[slideIndex - 1]
+  .classList.add("active-dot");
+
+}
+
+function startAutoSlide(){
+
+  slideTimer = setTimeout(()=>{
+
+    changeSlide(1);
+
+  },7000);
+
+}
 
 </script>
 
