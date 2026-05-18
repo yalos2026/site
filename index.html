@@ -458,11 +458,54 @@ section h2::after{
 }
 
 /* Мобильные — 1 колонка */
+/* ===================================================== */
+/* MOBILE OPTIMIZATION (≤ 768px) */
+/* ===================================================== */
 @media (max-width: 768px) {
-  .projects {
-    grid-template-columns: 1fr;
-  }
+  /* Глобальное уплотнение */
+  section { padding: 60px 5%; }
+  section h2 { font-size: 32px; margin-bottom: 30px; }
+  .text-block { font-size: 15px; line-height: 1.7; }
+
+  /* Навбар компактнее */
+  .top-bar { padding: 12px 16px; flex-direction: column; gap: 12px; }
+  .logo-area h1 { font-size: 20px; letter-spacing: 3px; }
+  .small-logo { width: 36px; }
+  nav { gap: 16px; flex-wrap: wrap; justify-content: center; }
+  nav a { font-size: 12px; letter-spacing: 1px; padding: 6px 0; }
+
+  /* Слайдер под телефон */
+  .slideshow-container { height: 50vh; margin-top: 70px; border-radius: 16px; }
+  .slide-text { left: 6%; bottom: 8%; }
+  .slide-text h2 { font-size: 32px; letter-spacing: 3px; }
+  .slide-subtitle { font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; }
+  .prev, .next { width: 44px; height: 44px; font-size: 18px; }
+  .dots { bottom: 16px; }
+  .dot { width: 8px; height: 8px; margin: 0 4px; }
+
+  /* Проекты: 1 колонка, меньше отступы */
+  .projects { gap: 20px; }
+  .project { padding: 12px; border-radius: 14px; }
+  .project img { aspect-ratio: 4/3; border-radius: 10px; }
+  .project-content { left: 16px; bottom: 16px; }
+  .project-content h3 { font-size: 20px; letter-spacing: 2px; }
+  .project-content p { font-size: 13px; max-width: 90%; }
+
+  /* Футер и прочее */
+  footer { padding: 40px 20px; font-size: 13px; }
 }
+
+/* Совсем маленькие экраны (≤ 480px) */
+@media (max-width: 480px) {
+  section { padding: 40px 4%; }
+  section h2 { font-size: 26px; margin-bottom: 24px; }
+  .text-block { font-size: 14px; }
+  .slide-text h2 { font-size: 26px; }
+  .slideshow-container { height: 45vh; }
+  nav a { font-size: 11px; }
+  .project-content h3 { font-size: 18px; }
+}
+  }
   
 /* ===================================================== */
 /* PROJECT CARD */
