@@ -239,13 +239,13 @@ nav a:hover::after{
 
 .mySlides img {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
-  width: 90%;           /* ← занимаем почти весь экран, но оставляем воздух */
-  height: 90%;
+  width: 80%;           /* ← все слайды одинаковые, 80% от контейнера */
+  height: 80%;          /* ← все слайды одинаковые, 80% от контейнера */
   object-fit: cover;
   object-position: center center;
-  transform: translate(-50%, -50%) scale(0.9); /* ← центрирование + лёгкое отдаление */
+  transform: translate(-50%, -50%) scale(1);  /* ← центрирование + ваш scale */
   transition: transform 8s ease;
 }
 
