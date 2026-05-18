@@ -7,6 +7,8 @@
 
 <title>GP FILM</title>
 
+<!-- FONTS -->
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -26,45 +28,57 @@ html{
 }
 
 body{
+
   background:#040816;
+
   color:white;
+
   overflow-x:hidden;
+
   font-family:'Inter',sans-serif;
 }
 
 /* ===================================================== */
-/* BACKGROUND */
+/* CINEMATIC BACKGROUND */
 /* ===================================================== */
 
 body::before{
+
   content:"";
+
   position:fixed;
   inset:0;
 
   background:
   radial-gradient(circle at top,
-  rgba(42,82,255,.15),
+  rgba(42,82,255,.18),
   transparent 40%);
 
   pointer-events:none;
-  z-index:-3;
+
+  z-index:-2;
 }
 
+/* ===================================================== */
 /* FILM GRAIN */
+/* ===================================================== */
 
 body::after{
+
   content:"";
+
   position:fixed;
   inset:0;
 
   background-image:
   url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 
-  opacity:.06;
+  opacity:.05;
 
   animation:grain 8s steps(10) infinite;
 
   pointer-events:none;
+
   z-index:9999;
 }
 
@@ -86,6 +100,7 @@ body::after{
 .top-bar{
 
   position:fixed;
+
   top:0;
   left:0;
 
@@ -99,15 +114,17 @@ body::after{
 
   z-index:1000;
 
-  background:rgba(0,0,0,.2);
+  background:
+  rgba(0,0,0,.2);
+
   backdrop-filter:blur(16px);
 
   border-bottom:
   1px solid rgba(255,255,255,.05);
-
 }
 
 .logo-area{
+
   display:flex;
   align-items:center;
   gap:18px;
@@ -116,6 +133,7 @@ body::after{
 .small-logo{
 
   width:48px;
+
   border-radius:10px;
 
   box-shadow:
@@ -127,11 +145,14 @@ body::after{
   font-family:'Cinzel',serif;
 
   font-size:28px;
+
   letter-spacing:6px;
 }
 
 nav{
+
   display:flex;
+
   gap:40px;
 }
 
@@ -140,6 +161,7 @@ nav a{
   position:relative;
 
   color:white;
+
   text-decoration:none;
 
   opacity:.72;
@@ -147,6 +169,7 @@ nav a{
   transition:.4s;
 
   font-size:14px;
+
   letter-spacing:2px;
 }
 
@@ -208,11 +231,12 @@ nav a:hover::after{
 
   object-fit:cover;
 
-  animation:cinemaZoom 14s linear infinite;
+  animation:
+  cinemaZoom 14s linear infinite;
 }
 
 /* ===================================================== */
-/* TEXT */
+/* SLIDE TEXT */
 /* ===================================================== */
 
 .slide-text{
@@ -224,7 +248,8 @@ nav a:hover::after{
 
   z-index:20;
 
-  animation:slideReveal 1.8s ease;
+  animation:
+  slideReveal 1.8s ease;
 }
 
 .slide-subtitle{
@@ -255,7 +280,7 @@ nav a:hover::after{
 }
 
 /* ===================================================== */
-/* ARROWS */
+/* SLIDER BUTTONS */
 /* ===================================================== */
 
 .prev,
@@ -414,13 +439,13 @@ section h2::after{
   display:grid;
 
   grid-template-columns:
-  repeat(auto-fit,minmax(320px,1fr));
+  repeat(auto-fit,minmax(420px,1fr));
 
   gap:45px;
 }
 
 /* ===================================================== */
-/* CARD */
+/* PROJECT CARD */
 /* ===================================================== */
 
 .project{
@@ -430,10 +455,12 @@ section h2::after{
   overflow:hidden;
 
   background:
-  rgba(0,0,0,.55);
+  rgba(0,0,0,.72);
 
   border:
   1px solid rgba(255,255,255,.05);
+
+  border-radius:18px;
 
   backdrop-filter:blur(14px);
 
@@ -447,6 +474,8 @@ section h2::after{
 
   box-shadow:
   0 20px 60px rgba(0,0,0,.45);
+
+  padding:18px;
 }
 
 .project.show{
@@ -466,49 +495,70 @@ section h2::after{
   0 0 80px rgba(64,104,255,.18);
 }
 
+/* ===================================================== */
 /* IMAGE */
+/* ===================================================== */
 
 .project img{
 
   width:100%;
-  height:560px;
+
+  aspect-ratio:16 / 9;
+
+  height:auto;
 
   object-fit:cover;
 
+  border-radius:12px;
+
   transition:1.2s ease;
+
+  display:block;
 }
 
 .project:hover img{
 
-  transform:scale(1.08);
+  transform:scale(1.05);
 }
 
-/* BLACK OVERLAY */
+/* ===================================================== */
+/* OVERLAY */
+/* ===================================================== */
 
 .project::before{
 
   content:"";
 
   position:absolute;
-  inset:0;
+
+  left:18px;
+  right:18px;
+  top:18px;
+  bottom:18px;
+
+  border-radius:12px;
 
   background:
   linear-gradient(to top,
-  rgba(0,0,0,.96),
+  rgba(0,0,0,.92),
   rgba(0,0,0,.15),
-  transparent);
+  transparent 60%);
 
   z-index:2;
+
+  pointer-events:none;
 }
 
-/* TEXT */
+/* ===================================================== */
+/* PROJECT TEXT */
+/* ===================================================== */
 
 .project-content{
 
   position:absolute;
 
-  left:30px;
-  bottom:30px;
+  left:40px;
+  bottom:40px;
 
   z-index:5;
 }
@@ -517,11 +567,11 @@ section h2::after{
 
   font-family:'Cinzel',serif;
 
-  font-size:34px;
+  font-size:32px;
 
   letter-spacing:3px;
 
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .project-content p{
@@ -530,7 +580,7 @@ section h2::after{
 
   line-height:1.7;
 
-  max-width:280px;
+  max-width:320px;
 }
 
 /* ===================================================== */
@@ -600,25 +650,32 @@ footer{
 @media(max-width:900px){
 
   .top-bar{
+
     flex-direction:column;
+
     gap:20px;
   }
 
   nav{
+
     flex-wrap:wrap;
+
     justify-content:center;
   }
 
   .slide-text h2{
+
     font-size:44px;
   }
 
   section h2{
+
     font-size:42px;
   }
 
-  .project img{
-    height:480px;
+  .projects{
+
+    grid-template-columns:1fr;
   }
 
 }
@@ -635,15 +692,23 @@ footer{
 <div class="top-bar">
 
   <div class="logo-area">
+
     <img class="small-logo" src="images/logo1.jpg">
+
     <h1>GP FILM</h1>
+
   </div>
 
   <nav>
+
     <a href="#about">О НАС</a>
+
     <a href="#projects">ПРОЕКТЫ</a>
+
     <a href="#agency">АГЕНТСТВО</a>
+
     <a href="#contacts">КОНТАКТЫ</a>
+
   </nav>
 
 </div>
@@ -654,7 +719,7 @@ footer{
 
 <div class="slideshow-container">
 
-  <!-- SLIDE 1 -->
+  <!-- SLIDE -->
 
   <div class="mySlides fade">
 
@@ -672,7 +737,7 @@ footer{
 
   </div>
 
-  <!-- SLIDE 2 -->
+  <!-- SLIDE -->
 
   <div class="mySlides fade">
 
@@ -690,7 +755,7 @@ footer{
 
   </div>
 
-  <!-- SLIDE 3 -->
+  <!-- SLIDE -->
 
   <div class="mySlides fade">
 
@@ -708,9 +773,10 @@ footer{
 
   </div>
 
-  <!-- ARROWS -->
+  <!-- BUTTONS -->
 
   <a class="prev" onclick="changeSlide(-1)">❮</a>
+
   <a class="next" onclick="changeSlide(1)">❯</a>
 
   <!-- DOTS -->
@@ -718,7 +784,9 @@ footer{
   <div class="dots">
 
     <span class="dot" onclick="currentSlide(1)"></span>
+
     <span class="dot" onclick="currentSlide(2)"></span>
+
     <span class="dot" onclick="currentSlide(3)"></span>
 
   </div>
@@ -866,6 +934,10 @@ footer{
 
 </section>
 
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+
 <footer>
   © 2026 GP FILM
 </footer>
@@ -876,9 +948,11 @@ footer{
 /* REVEAL ANIMATION */
 /* ===================================================== */
 
-const projects = document.querySelectorAll('.project');
+const projects =
+document.querySelectorAll('.project');
 
-const observer = new IntersectionObserver(entries => {
+const observer =
+new IntersectionObserver(entries => {
 
   entries.forEach(entry => {
 
@@ -905,9 +979,11 @@ projects.forEach(project => {
 /* ===================================================== */
 
 let slideIndex = 1;
+
 let slideTimer;
 
 showSlides(slideIndex);
+
 startAutoSlide();
 
 function changeSlide(n){
@@ -947,14 +1023,19 @@ function showSlides(n){
   }
 
   for(let i = 0; i < slides.length; i++){
+
     slides[i].style.display = "none";
+
   }
 
   for(let i = 0; i < dots.length; i++){
+
     dots[i].classList.remove("active-dot");
+
   }
 
-  slides[slideIndex - 1].style.display = "block";
+  slides[slideIndex - 1].style.display =
+  "block";
 
   dots[slideIndex - 1]
   .classList.add("active-dot");
