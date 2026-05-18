@@ -575,39 +575,40 @@ section h2::after{
 
 .project-content {
   position: absolute;
-  left: 40px;
-  bottom: 40px;
+  left: 30px;
+  right: 30px;
+  bottom: 40px;          /* ← жёсткая привязка к низу фото */
   z-index: 5;
-  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* ← всё содержимое прижимается к низу */
 }
 
 .project-content h3 {
   font-family: 'Cinzel', serif;
-  font-size: 28px;        /* ← чуть меньше для красоты */
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  transition: all 0.4s ease;
+  font-size: 22px;       /* ваш размер */
+  letter-spacing: 2px;
+  margin: 0;
+  transition: opacity 0.3s ease;
 }
 
 .project-content p {
   font-size: 14px;
-  line-height: 1.6;
-  max-width: 280px;
-  opacity: 0;             /* ← скрыто по умолчанию */
-  transform: translateY(20px); /* ← смещено вниз */
-  transition: all 0.4s ease 0.1s; /* ← плавное появление с задержкой */
+  line-height: 1.5;
+  opacity: 0;
+  max-height: 0;         /* скрыто без смещения вёрстки */
+  overflow: hidden;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
   color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;    /* отступ между описанием и названием */
 }
 
-/* При наведении на карточку показываем описание */
-.project:hover .project-content h3 {
-  transform: translateY(-10px);  /* ← заголовок чуть вверх */
-  margin-bottom: 15px;
-}
-
+/* При наведении описание плавно появляется НАД названием */
 .project:hover .project-content p {
-  opacity: 1;             /* ← показываем текст */
-  transform: translateY(0); /* ← возвращаем на место */
+  opacity: 1;
+  max-height: 120px;     /* разрешаем появиться */
+  transform: translateY(0);
 }
 
 /* ===================================================== */
