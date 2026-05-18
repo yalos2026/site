@@ -1,412 +1,701 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>GP film</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- КИНОШНЫЙ ШРИФТ -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<title>GP FILM</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!-- CINZEL -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #000033;
-      color: white;
-    }
+<style>
 
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* ===== НОВАЯ НАВИГАЦИЯ СЛЕВА ВВЕРХУ ===== */
-    .top-bar {
-      background: #000033;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #222;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+body{
+  background:
+  radial-gradient(circle at top, rgba(25,40,90,.35), transparent 50%),
+  #050b1c;
 
-    /* Маленький логотип под надписью GP Film */
-    .small-logo {
-      width: 45px;
-      height: auto;
-      border-radius: 8px;
-    }
+  color:#f2f2f2;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
 
-    .logo-area h1 {
-      font-size: 32px;
-      margin: 0;
-    }
+/* ========================= */
+/* NOISE / FILM GRAIN */
+/* ========================= */
 
-    nav {
-      display: flex;
-      gap: 25px;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  opacity:.08;
+  pointer-events:none;
+  z-index:9999;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      opacity: 0.7;
-      transition: 0.3s;
-      font-size: 16px;
-    }
+/* ========================= */
+/* NAVIGATION */
+/* ========================= */
 
-    nav a:hover {
-      opacity: 1;
-    }
+.top-bar{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
 
-    /* ===== СЛАЙД-ШОУ ===== */
-    .slideshow-container {
-      position: relative;
-      max-width: 100%;
-      height: 70vh;
-      overflow: hidden;
-    }
+  background:rgba(3,8,20,.75);
+  backdrop-filter:blur(12px);
 
-    .mySlides {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
+  border-bottom:1px solid rgba(255,255,255,.06);
 
-    .mySlides img {
-      width: 100%;
-      height: 70vh;
-      object-fit: cover;
-      object-position: top 15%;
-    }
+  padding:18px 40px;
 
-    /* Кнопки вперёд/назад */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 24px;
-      transition: 0.3s;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 10;
-    }
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
 
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
+.small-logo{
+  width:42px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(255,255,255,.15);
+}
 
-    /* Текст на слайде */
-    .slide-text {
-      position: absolute;
-      bottom: 30px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      color: white;
-      font-size: 28px;
-      font-family: 'Playfair Display', serif;
-      background: rgba(0,0,0,0.6);
-      padding: 15px;
-      z-index: 10;
-    }
+.logo-area h1{
+  font-family:'Cinzel',serif;
+  letter-spacing:5px;
+  font-size:28px;
+  font-weight:700;
+}
 
-    /* Точки навигации */
-    .dots {
-      text-align: center;
-      padding: 20px;
-      background: #000033;
-    }
+nav{
+  display:flex;
+  gap:35px;
+}
 
-    .dot {
-      cursor: pointer;
-      height: 12px;
-      width: 12px;
-      margin: 0 5px;
-      background-color: #555;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
+nav a{
+  color:white;
+  text-decoration:none;
+  opacity:.65;
+  transition:.4s;
+  letter-spacing:1px;
+  position:relative;
+}
 
-    .active-dot, .dot:hover {
-      background-color: #ff6b6b;
-    }
+nav a:hover{
+  opacity:1;
+}
 
-    /* Анимация появления слайдов */
-    .fade {
-      animation-name: fade;
-      animation-duration: 1s;
-    }
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:1px;
+  background:white;
+  transition:.4s;
+}
 
-    @keyframes fade {
-      from {opacity: 0.4;}
-      to {opacity: 1;}
-    }
+nav a:hover::after{
+  width:100%;
+}
 
-    /* Остальные секции */
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* ========================= */
+/* HERO */
+/* ========================= */
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
+.slideshow-container{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
 
-    .project {
-      background: #111;
-      border: 1px solid #222;
-      transition: 0.3s;
-      width: 50%;              /* карточка в два раза уже */
-      margin: 0 auto;          /* центрирование */
-    }
+.mySlides{
+  display:none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  animation:fadeZoom 2s ease;
+}
 
-    .project:hover {
-      transform: scale(1.03);
-    }
+.mySlides img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 
-    .project img {
-      width: 100%;             /* заполняет всю карточку */
-      height: auto;
-      aspect-ratio: 2 / 3;     /* вертикальный формат (портрет) */
-      object-fit: cover;
-      display: block;
-    }
+  filter:
+  brightness(.55)
+  contrast(1.1)
+  saturate(.9);
 
-    .project div {
-      padding: 20px;
-    }
+  transform:scale(1.03);
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: black;
-      border-top: 1px solid #222;
-      font-size: 14px;
-      opacity: 0.6;
-    }
+  animation:slowZoom 12s linear infinite;
+}
 
-    @media (max-width: 768px) {
-      .top-bar {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      .slide-text {
-        font-size: 18px;
-        bottom: 15px;
-      }
-      .prev, .next {
-        padding: 10px;
-        font-size: 18px;
-      }
-    }
-  </style>
+/* cinematic overlays */
+
+.slideshow-container::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.2)),
+  linear-gradient(to right, rgba(0,0,0,.65), transparent 50%);
+  z-index:2;
+}
+
+.slide-text{
+  position:absolute;
+  left:8%;
+  bottom:14%;
+  z-index:10;
+
+  max-width:700px;
+}
+
+.slide-text h2{
+  font-family:'Cinzel',serif;
+  font-size:72px;
+  line-height:1.1;
+  letter-spacing:4px;
+
+  margin-bottom:20px;
+
+  animation:rise 1.5s ease;
+}
+
+.slide-text p{
+  font-size:18px;
+  opacity:.75;
+  line-height:1.7;
+  max-width:500px;
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.prev,
+.next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+
+  color:white;
+  font-size:32px;
+
+  background:rgba(0,0,0,.4);
+
+  width:60px;
+  height:60px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  z-index:20;
+
+  transition:.4s;
+}
+
+.prev{
+  left:20px;
+}
+
+.next{
+  right:20px;
+}
+
+.prev:hover,
+.next:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* ========================= */
+/* DOTS */
+/* ========================= */
+
+.dots{
+  position:absolute;
+  bottom:40px;
+  width:100%;
+  z-index:30;
+  text-align:center;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  display:inline-block;
+
+  background:rgba(255,255,255,.3);
+
+  margin:0 7px;
+
+  transition:.4s;
+}
+
+.active-dot{
+  background:white;
+  transform:scale(1.4);
+}
+
+/* ========================= */
+/* SECTIONS */
+/* ========================= */
+
+section{
+  padding:120px 8%;
+  position:relative;
+}
+
+section h2{
+  font-family:'Cinzel',serif;
+  font-size:48px;
+  letter-spacing:4px;
+  margin-bottom:50px;
+}
+
+/* ========================= */
+/* PROJECTS */
+/* ========================= */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:45px;
+}
+
+/* CINEMATIC CARDS */
+
+.project{
+  position:relative;
+
+  background:rgba(0,0,0,.75);
+
+  border:1px solid rgba(255,255,255,.06);
+
+  overflow:hidden;
+
+  transition:.7s ease;
+
+  transform:translateY(50px);
+  opacity:0;
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.45);
+}
+
+.project.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.project:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.7);
+}
+
+.project img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+
+  transition:1s ease;
+
+  filter:
+  brightness(.8)
+  contrast(1.1);
+}
+
+.project:hover img{
+  transform:scale(1.05);
+}
+
+.project::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(to top,
+  rgba(0,0,0,.95),
+  transparent 55%);
+
+  pointer-events:none;
+}
+
+.project div{
+  position:absolute;
+  bottom:25px;
+  left:25px;
+  z-index:10;
+}
+
+.project p{
+  font-family:'Cinzel',serif;
+  font-size:28px;
+  letter-spacing:2px;
+}
+
+/* ========================= */
+/* TEXT BLOCKS */
+/* ========================= */
+
+p{
+  line-height:1.9;
+  opacity:.82;
+  margin-bottom:12px;
+  max-width:900px;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+  padding:50px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.06);
+  opacity:.5;
+  background:black;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes fadeZoom{
+  from{
+    opacity:0;
+    transform:scale(1.04);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes slowZoom{
+  from{
+    transform:scale(1.03);
+  }
+
+  to{
+    transform:scale(1.09);
+  }
+}
+
+@keyframes rise{
+  from{
+    transform:translateY(40px);
+    opacity:0;
+  }
+
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:900px){
+
+  .top-bar{
+    flex-direction:column;
+    gap:20px;
+  }
+
+  nav{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .slide-text h2{
+    font-size:42px;
+  }
+
+  section h2{
+    font-size:36px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- НАВИГАЦИЯ СВЕРХУ СЛЕВА -->
+<!-- NAVIGATION -->
+
 <div class="top-bar">
+
   <div class="logo-area">
-    <!-- Маленький логотип слева под надписью GP Film -->
     <img class="small-logo" src="images/logo1.jpg">
-    <h1>GP film</h1>
+    <h1>GP FILM</h1>
   </div>
+
   <nav>
     <a href="#about">О нас</a>
     <a href="#projects">Проекты</a>
-    <a href="#scenary">Сценарное агентство</a>
+    <a href="#scenary">Сценарии</a>
     <a href="#contacts">Контакты</a>
   </nav>
+
 </div>
 
-<!-- СЛАЙД-ШОУ ИЗ КАЧЕСТВЕННЫХ КАДРОВ ФИЛЬМОВ -->
+<!-- HERO -->
+
 <div class="slideshow-container">
-  
+
   <div class="mySlides fade">
     <img src="images/logotype1.jpg">
+
+    <div class="slide-text">
+      <h2>GP FILM</h2>
+      <p>
+        Кино как память. Кино как архив.
+      </p>
+    </div>
   </div>
-  
+
   <div class="mySlides fade">
     <img src="images/1.jpeg">
-    <div class="slide-text">За 5 минут до января</div>
+
+    <div class="slide-text">
+      <h2>За 5 минут до января</h2>
+      <p>
+        Истории, в которых тишина звучит громче слов.
+      </p>
+    </div>
   </div>
 
   <div class="mySlides fade">
     <img src="images/kino3.jpg">
-    <div class="slide-text">Частный заказ</div>
-  </div>
 
-  <div class="mySlides fade">
-    <img src="images/otrajenie radugi.JPG">
-    <div class="slide-text">Отражение радуги</div>
-  </div>
-
-  <div class="mySlides fade">
-    <img src="images/almazy na desert.jpg">
-    <div class="slide-text">Алмазы на десерт</div>
-  </div>
-
-  <div class="mySlides fade">
-    <img src="images/kapitanskie deti.jpg">
-    <div class="slide-text">Капитанские дети</div>
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="images/rodstvenii obmen.jpg">
-    <div class="slide-text">Родственный обмен</div>
+    <div class="slide-text">
+      <h2>Частный заказ</h2>
+      <p>
+        Тревожная эстетика времени и памяти.
+      </p>
+    </div>
   </div>
 
   <a class="prev" onclick="changeSlide(-1)">❮</a>
   <a class="next" onclick="changeSlide(1)">❯</a>
+
+  <div class="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
 </div>
 
-<div class="dots">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-  <span class="dot" onclick="currentSlide(4)"></span>
-  <span class="dot" onclick="currentSlide(5)"></span>
-</div>
+<!-- ABOUT -->
 
 <section id="about">
-  <h2>О нас</h2>
-  <br>
+
+  <h2>О НАС</h2>
+
   <p>
-    Группа компаний GP активно работает на российском кино- и теле- рынке с 1999 года и сотрудничает с Первым каналом и Россия.</p>
-    <p>В Группу компаний GP входят:</p>
-    <p>Кинокомпания «Джи Пи» - производство кино и телефильмов.</p>
-    <p>Компания «Инотэк» студия «пост-продакшн».</p> 
-  </section>
+    Группа компаний GP активно работает на российском кино- и теле-рынке с 1999 года.
+  </p>
 
-<section id="projects">
-  <h2>Проекты</h2>
-  <br>
-  <div class="projects">
-    <div class="project">
-      <img src="images/krotkaya.jpg">
-      <div>
-        <p>Кроткая</p>
-      </div>
-    </div>
-    <div class="project">
-      <img src="images/vtumane.jpg">
-      <div>
-        <p>В тумане</p>
-      </div>
-    </div>
-    <div class="project">
-      <img src="images/nyanya.jpg">
-      <div>
-        <p>Требуется няня</p>
-      </div>
-    </div>
-  </div>
- </section>
+  <p>
+    Производство фильмов, сериалов и визуальных историй с авторской атмосферой.
+  </p>
 
-<section id="scenary">
-  <h2>Сценарное агентство</h2>
-  <br>
-  <p>Уважаемые сценаристы, обращаем ваше внимание на то, что в первую очередь мы рассматриваем заявки, оформленные в соответствии со следующими критериями:</p>
-  <p>1. В теме письма обязательно указывается «Название» и «Формат, жанр»</p>
-  <p>2. В самой заявке обязательно указываются следующие параметры:</p>
-  <p>a. Имя автора(-ов) и контактные данные</p>
-  <p>b. Название проекта</p>
-  <p>c. Формат, жанр</p>
-  <p>d. Хронометраж</p>
-  <p>e. Аудитория</p>
-  <p>f. Краткий синопсис</p>
-  <p>g. Развернутый синопсис/заявка</p>
-  <p>h. Описание главных героев</p>
-  <p>Заявки на полнометражные, телевизионные фильмы, а также на анимационные фильмы и сериалы присылайте по адресу kino@gpfilm.ru</p>
 </section>
 
+<!-- PROJECTS -->
+
+<section id="projects">
+
+  <h2>ПРОЕКТЫ</h2>
+
+  <div class="projects">
+
+    <div class="project">
+      <img src="images/krotkaya.jpg">
+
+      <div>
+        <p>КРОТКАЯ</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/vtumane.jpg">
+
+      <div>
+        <p>В ТУМАНЕ</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/nyanya.jpg">
+
+      <div>
+        <p>ТРЕБУЕТСЯ НЯНЯ</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SCENARY -->
+
+<section id="scenary">
+
+  <h2>СЦЕНАРНОЕ АГЕНТСТВО</h2>
+
+  <p>
+    Мы рассматриваем заявки на полнометражные фильмы,
+    сериалы и анимационные проекты.
+  </p>
+
+  <p>
+    Присылайте материалы:
+    kino@gpfilm.ru
+  </p>
+
+</section>
+
+<!-- CONTACTS -->
+
 <section id="contacts">
-  <h2>Контакты</h2>
-  <br>
+
+  <h2>КОНТАКТЫ</h2>
+
   <p>Email: kino@gpfilm.ru</p>
-  <p>119019, Москва, Гоголевский бульвар, дом 17, строение 1, офис 400</p>
-  <p>Телефоны: 8(495)6371201, 8(495)6371208</p>
-  </section>
+
+  <p>
+    Москва, Гоголевский бульвар 17
+  </p>
+
+</section>
 
 <footer>
-  © 2026 Кинокомпания Джи Пи
+  © 2026 GP FILM
 </footer>
 
 <script>
-  let slideIndex = 1;
-  let slideTimer;
 
-  function showSlides(n) {
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    
-    if (n > slides.length) slideIndex = 1;
-    if (n < 1) slideIndex = slides.length;
-    
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active-dot", "");
-    }
-    
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active-dot";
-  }
+/* ========================= */
+/* SLIDER */
+/* ========================= */
 
-  function changeSlide(n) {
-    clearTimeout(slideTimer);
-    showSlides(slideIndex += n);
-    startAutoSlide();
-  }
+let slideIndex = 1;
+let slideTimer;
 
-  function currentSlide(n) {
-    clearTimeout(slideTimer);
-    showSlides(slideIndex = n);
-    startAutoSlide();
-  }
+showSlides(slideIndex);
+startAutoSlide();
 
-  function startAutoSlide() {
-    slideTimer = setTimeout(() => {
-      changeSlide(1);
-    }, 5000);
-  }
-
-  // Запускаем слайд-шоу
-  showSlides(slideIndex);
+function changeSlide(n){
+  clearTimeout(slideTimer);
+  showSlides(slideIndex += n);
   startAutoSlide();
+}
+
+function currentSlide(n){
+  clearTimeout(slideTimer);
+  showSlides(slideIndex = n);
+  startAutoSlide();
+}
+
+function showSlides(n){
+
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+
+  if(n > slides.length){
+    slideIndex = 1;
+  }
+
+  if(n < 1){
+    slideIndex = slides.length;
+  }
+
+  for(let i = 0; i < slides.length; i++){
+    slides[i].style.display = "none";
+  }
+
+  for(let i = 0; i < dots.length; i++){
+    dots[i].classList.remove("active-dot");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+
+  if(dots[slideIndex - 1]){
+    dots[slideIndex - 1].classList.add("active-dot");
+  }
+
+}
+
+function startAutoSlide(){
+
+  slideTimer = setTimeout(() => {
+    changeSlide(1);
+  }, 7000);
+
+}
+
+/* ========================= */
+/* CINEMATIC APPEAR */
+/* ========================= */
+
+const projects = document.querySelectorAll('.project');
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+
+  });
+
+}, {
+  threshold:0.2
+});
+
+projects.forEach(project => {
+  observer.observe(project);
+});
+
 </script>
 
 </body>
