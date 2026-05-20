@@ -29,7 +29,7 @@ html{
 
 body{
 
-  background:#040816;
+  background:#060B1F;
 
   color:white;
 
@@ -278,7 +278,7 @@ nav a:hover::after{
 
   font-family:'Cinzel',serif;
 
-  font-size:78px;
+  font-size:70px;
 
   line-height:1.05;
 
@@ -779,7 +779,276 @@ footer{
   }
 
 }
+/* ===================================================== */
+/* VERTICAL CAROUSEL */
+/* ===================================================== */
 
+#posters {
+  padding: 80px 8%;
+  position: relative;
+}
+
+#posters h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  text-align: left;  /* ← выравнивание по левому краю */
+}
+
+#posters h2::after {
+  content: "";
+  position: absolute;
+  left: 0;              /* ← привязка к левому краю */
+  bottom: -15px;
+  /* transform убираем, он больше не нужен */
+  width: 120px;         /* ← как в других разделах */
+  height: 1px;
+  background: linear-gradient(to right, #7fa8ff, transparent);
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  /* Градиенты по краям для эффекта «исчезновения» */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scrollLeft 45s linear infinite;
+  will-change: transform;
+}
+
+/* Пауза при наведении */
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  width: 220px;                  /* Ширина вертикального постера */
+  aspect-ratio: 2 / 3;           /* Вертикальный формат 2:3 */
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.carousel-slide:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(64, 104, 255, .25);
+  z-index: 10;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.carousel-slide:hover img {
+  transform: scale(1.08);
+}
+
+/* Подпись под постером */
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 16px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,.95), transparent 60%);
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: white;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* Анимация прокрутки */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Сдвигаем на половину ширины (дубликаты) */
+  }
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .carousel-slide {
+    width: 160px;                /* Уже на мобильных */
+  }
+  .carousel-caption {
+    font-size: 12px;
+    padding: 20px 12px 12px;
+  }
+  #posters h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    width: 140px;
+  }
+  .carousel-track {
+    gap: 16px;
+  }
+}
+/* ===================================================== */
+/* CONTACTS GRID - 4 COLUMNS */
+/* ===================================================== */
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ← 4 равные колонки */
+  gap: 30px;                             /* ← отступ между колонками */
+  margin-top: 40px;
+}
+
+.contact-col h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: #89a8ff;
+}
+
+.contact-col p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+/* Адаптив: на телефонах 1 колонка, чтобы было читаемо */
+@media (max-width: 768px) {
+  .contacts-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+}
+/* Принудительно сбрасываем ширину для колонок контактов */
+#contacts .contact-col {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+  .video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  border: 1px solid rgba(255,255,255,.06);
+  background: #000;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9; /* Стандартное кино-соотношение */
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .video-wrapper video {
+    aspect-ratio: 4 / 3; /* На телефонах видео выше, чтобы не было мелких элементов */
+  }
+}
+
+/* ===================================================== */
+/* MOVIE DETAILS */
+/* ===================================================== */
+
+.movie-details {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.project:hover .movie-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.movie-details .year {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: #89a8ff;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.movie-details .director,
+.movie-details .cast {
+  margin-bottom: 5px;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.movie-details .director strong,
+.movie-details .cast strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.movie-details .loading {
+  text-align: center;
+  padding: 10px;
+  font-style: italic;
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.movie-details .error {
+  text-align: center;
+  padding: 10px;
+  color: #ff6b6b;
+  font-size: 11px;
+}
+
+/* На мобильных скрываем доп. информацию */
+@media (max-width: 768px) {
+  .movie-details {
+    display: none;
+  }
+}
 </style>
 </head>
 
@@ -802,9 +1071,9 @@ footer{
   <nav>
 
     <a href="#about">О НАС</a>
-    <a href="#projects">ШОУРИЛ</a>
+    <a href="#showreel">ШОУРИЛ</a>
     <a href="#projects">ПРОЕКТЫ</a>
-    <a href="#projects">ДИСТРИБУЦИЯ</a>
+    <a href="#posters">ДИСТРИБУЦИЯ</a>
     <a href="#agency">АВТОРАМ</a>
     <a href="#contacts">КОНТАКТЫ</a>
 
@@ -842,6 +1111,26 @@ footer{
 
   <div class="mySlides fade">
 
+    <img src="images/furc1.jpg">
+
+    <div class="slide-text">
+
+      <h2>ФУРЦЕВА</h2>
+
+      <div class="slide-subtitle">
+        ЛУЧШАЯ РОЛЬ ИРИНЫ РОЗАНОВОЙ
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+    <!-- SLIDE -->
+
+  <div class="mySlides fade">
+
     <img src="images/Czatmen.png">
 
     <div class="slide-text">
@@ -849,56 +1138,20 @@ footer{
       <h2>ЗАТМЕНИЕ</h2>
 
       <div class="slide-subtitle">
-        ДЕТЕКТИВНЫЙ СЕРИАЛ
+        НОВАЯ ПРЕМЬЕРА
       </div>
 
-
-
-    </div>
+        </div>
 
   </div>
 
-  <!-- SLIDE -->
 
-  <div class="mySlides fade">
-
-    <img src="images/vtumane.jpg">
-
-    <div class="slide-text">
-
-      <h2>В ТУМАНЕ</h2>
-
-      <div class="slide-subtitle">
-        ПРИЗЕР КАННСКОГО ФЕСТИВАЛЯ
-      </div>
+          <!-- SLIDE -->
 
 
+        <div class="mySlides fade">
 
-    </div>
-
-  </div>
-
-  <div class="mySlides fade">
-
-    <img src="images/rus gorki.jpg">
-
-    <div class="slide-text">
-
-      <h2>РУССКИЕ ГОРКИ</h2>
-
-      <div class="slide-subtitle">
-        ИСТОРИЧЕСКАЯ САГА
-      </div>
-
-
-
-    </div>
-
-  </div>
-
-   <div class="mySlides fade">
-
-    <img src="images/arbatckie taini2.jpg">
+    <img src="images/art.jpg">
 
     <div class="slide-text">
 
@@ -914,16 +1167,19 @@ footer{
 
   </div>
 
+
+          <!-- SLIDE -->
+
   <div class="mySlides fade">
 
-    <img src="images/za 5 minut do janvar2.jpg">
+    <img src="images/rusg.jpg">
 
     <div class="slide-text">
 
-      <h2>ЗА 5 МИНУТ ДО ЯНВАРЯ</h2>
+      <h2>РУССКИЕ ГОРКИ</h2>
 
       <div class="slide-subtitle">
-        НОВОГОДНЯЯ КОМЕДИЯ
+        ИСТОРИЧЕСКАЯ САГА
       </div>
 
 
@@ -933,6 +1189,64 @@ footer{
   </div>
 
 
+
+  <div class="mySlides fade">
+
+    <img src="images/otraj-radugi.jpg">
+
+    <div class="slide-text">
+
+      <h2>ОТРАЖЕНИЕ РАДУГИ</h2>
+
+      <div class="slide-subtitle">
+        ДЕТЕКТИВНЫЙ СЕРИАЛ
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+<!-- SLIDE -->
+
+  <div class="mySlides fade">
+
+    <img src="images/vtumgl.jpg">
+
+    <div class="slide-text">
+
+      <h2>В ТУМАНЕ</h2>
+
+      <div class="slide-subtitle">
+        ПРИЗЕР КАННСКОГО ФЕСТИВАЛЯ
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+    <!-- SLIDE -->
+
+  <div class="mySlides fade">
+
+    <img src="images/dolp.png">
+
+    <div class="slide-text">
+
+      <h2>ДОЛГИЙ ПУТЬ ДОМОЙ</h2>
+
+      <div class="slide-subtitle">
+        ЖИЗНЕННАЯ ДРАМА
+      </div>
+
+
+
+    </div>
+
+  </div>
   <!-- BUTTONS -->
 
   <a class="prev" onclick="changeSlide(-1)">❮</a>
@@ -944,12 +1258,15 @@ footer{
   <div class="dots">
 
     <span class="dot" onclick="currentSlide(1)"></span>
-
     <span class="dot" onclick="currentSlide(2)"></span>
-
     <span class="dot" onclick="currentSlide(3)"></span>
     <span class="dot" onclick="currentSlide(4)"></span>
     <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+    <span class="dot" onclick="currentSlide(8)"></span>
+
+
 
   </div>
 
@@ -987,6 +1304,27 @@ footer{
 </section>
 
 <!-- ===================================================== -->
+<!-- SHOWREEL -->
+<!-- ===================================================== -->
+<section id="showreel">
+  <h2>ШОУРИЛ</h2>
+
+  <div class="video-wrapper">
+    <video
+      controls
+      preload="metadata"
+      poster="images/logotype2.jpg"
+      playsinline           <!-- ← Добавьте это -->
+      webkit-playsinline    <!-- ← Добавьте это -->
+      muted                 <!-- ← Добавьте это -->
+    >
+      <source src="images/show.mp4" type="video/mp4">
+      Ваш браузер не поддерживает воспроизведение видео.
+    </video>
+  </div>
+</section>
+
+<!-- ===================================================== -->
 <!-- PROJECTS -->
 <!-- ===================================================== -->
 
@@ -994,453 +1332,573 @@ footer{
 
   <h2>ПРОЕКТЫ</h2>
 
-   <div class="project">
-
-      <img src="images/ti menya slishish.jpg">
-
-      <div class="project-content">
-
-        <h3>ТЫ МЕНЯ СЛЫШИШЬ?</h3>
-        <p>Виктория Исакова попадает в кому</p>
-
-        </div>
-
-    </div>
-
   <div class="projects">
 
-    <!-- CARD -->
-    <div class="project">
-
-      <img src="images/otraj radugi.jpg">
-
+    <!-- CARD 1: ТЫ МЕНЯ СЛЫШИШЬ? -->
+    <div class="project" data-movie="ты меня слышишь">
+      <img src="images/ti menya slishish.jpg" alt="Ты меня слышишь?">
       <div class="project-content">
+        <h3>ТЫ МЕНЯ СЛЫШИШЬ?</h3>
+        <p>Виктория Исакова попадает в кому</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
+    </div>
 
+    <!-- CARD 2: ОТРАЖЕНИЕ РАДУГИ -->
+    <div class="project" data-movie="отражение радуги">
+      <img src="images/otraj radugi.jpg" alt="Отражение радуги">
+      <div class="project-content">
         <h3>ОТРАЖЕНИЕ РАДУГИ</h3>
-<p>Детектив с Андреем Мерзликиным</p>
-        </div>
-
+        <p>Детектив с Андреем Мерзликиным</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/krotkaya.jpg">
-
+    <!-- CARD 3: КРОТКАЯ -->
+    <div class="project" data-movie="кроткая">
+      <img src="images/krotkaya.jpg" alt="Кроткая">
       <div class="project-content">
-
         <h3>КРОТКАЯ</h3>
-         <p>Номинант Каннского фестиваля</p>
-
+        <p>Номинант Каннского фестиваля</p>
       </div>
-
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <!-- CARD -->
-
-    <div class="project">
-
-      <img src="images/esli lubish prosti.jpg">
-
+    <!-- CARD 4: ЕСЛИ ЛЮБИШЬ ПРОСТИ -->
+    <div class="project" data-movie="если любишь прости">
+      <img src="images/esli lubish prosti.jpg" alt="Если любишь прости">
       <div class="project-content">
-
         <h3>ЕСЛИ ЛЮБИШЬ ПРОСТИ</h3>
-      <p>Мелодрама с Егором Бероевым и Любовью Толкалиной</p>
-
+        <p>Мелодрама с Егором Бероевым и Любовью Толкалиной</p>
       </div>
-
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-
-  <div class="project">
-
-      <img src="images/trebuetsya nyna.png">
-
+    <!-- CARD 5: ТРЕБУЕТСЯ НЯНЯ -->
+    <div class="project" data-movie="требуется няня">
+      <img src="images/trebuetsya nyna.png" alt="Требуется няня">
       <div class="project-content">
-
         <h3>ТРЕБУЕТСЯ НЯНЯ</h3>
-<p>Лауреат Сочинского фестиваля</p>
-        </div>
-
+        <p>Лауреат Сочинского фестиваля</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-   <div class="project">
-
-      <img src="images/rodstvennii obmen.jpg">
-
+    <!-- CARD 6: РОДСТВЕННЫЙ ОБМЕН -->
+    <div class="project" data-movie="родственный обмен">
+      <img src="images/rodstvennii obmen.jpg" alt="Родственный обмен">
       <div class="project-content">
-
         <h3>РОДСТВЕННЫЙ ОБМЕН</h3>
         <p>Комедия с Кристиной Орбакайте</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/proces.png">
-
+    <!-- CARD 7: ПРОЦЕСС -->
+    <div class="project" data-movie="процесс">
+      <img src="images/proces.png" alt="Процесс">
       <div class="project-content">
-
         <h3>ПРОЦЕСС</h3>
         <p>Анна Снаткина в роли адвоката</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/sereb bor.jpg">
-
+    <!-- CARD 8: СЕРЕБРЯНЫЙ БОР -->
+    <div class="project" data-movie="серебряный бор">
+      <img src="images/sereb bor.jpg" alt="Серебряный бор">
       <div class="project-content">
-
         <h3>СЕРЕБРЯНЫЙ БОР</h3>
         <p>Семейная сага с Марией Шукшиной</p>
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/dolg put domoi.jpg">
-
+    <!-- CARD 9: ДОЛГИЙ ПУТЬ ДОМОЙ -->
+    <div class="project" data-movie="долгий путь домой">
+      <img src="images/dolg put domoi.jpg" alt="Долгий путь домой">
       <div class="project-content">
-
         <h3>ДОЛГИЙ ПУТЬ ДОМОЙ</h3>
-       <p>Дарья Мороз, Лиза Боярская в жизненной драме</p>
-        </div>
-
+        <p>Дарья Мороз, Лиза Боярская в жизненной драме</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/arbatckie taini1.jpg">
-
+    <!-- CARD 10: АРБАТСКИЕ ТАЙНЫ -->
+    <div class="project" data-movie="арбатские тайны">
+      <img src="images/arbatckie taini1.jpg" alt="Арбатские тайны">
       <div class="project-content">
-
         <h3>АРБАТСКИЕ ТАЙНЫ</h3>
         <p>Закрученная ретродрама</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/furceva.png">
-
+    <!-- CARD 11: ФУРЦЕВА -->
+    <div class="project" data-movie="фурцева">
+      <img src="images/furceva.png" alt="Фурцева">
       <div class="project-content">
-
         <h3>ФУРЦЕВА</h3>
         <h3>ЛЕГЕНДА О ЕКАТЕРИНЕ</h3>
         <p>Успешный сериал с Ириной Розановой</p>
-
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/brak ponaroshku.png">
-
+    <!-- CARD 12: БРАК ПОНАРОШКУ -->
+    <div class="project" data-movie="брак понарошку">
+      <img src="images/brak ponaroshku.png" alt="Брак понарошку">
       <div class="project-content">
-
         <h3>БРАК ПОНАРОШКУ</h3>
         <p>Мелодрама с Иваном Колесниковым</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/chastni zakaz.jpg">
-
+    <!-- CARD 13: ЧАСТНЫЙ ЗАКАЗ -->
+    <div class="project" data-movie="частный заказ">
+      <img src="images/chastni zakaz.jpg" alt="Частный заказ">
       <div class="project-content">
-
         <h3>ЧАСТНЫЙ ЗАКАЗ</h3>
         <p>Триллер с Александром Балуевым</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/suvenir ot varfumera.jpg">
-
+    <!-- CARD 14: СУВЕНИР ОТ ПАРФЮМЕРА -->
+    <div class="project" data-movie="сувенир от парфюмера">
+      <img src="images/suvenir ot varfumera.jpg" alt="Сувенир от парфюмера">
       <div class="project-content">
-
         <h3>СУВЕНИР ОТ ПАРФЮМЕРА</h3>
         <p>Детектив с Сергеем Шакуровым</p>
-
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/kapdeti.jpg">
-
+    <!-- CARD 15: КАПИТАНСКИЕ ДЕТИ -->
+    <div class="project" data-movie="капитанские дети">
+      <img src="images/kapdeti.jpg" alt="Капитанские дети">
       <div class="project-content">
-
         <h3>КАПИТАНСКИЕ ДЕТИ</h3>
         <p>По роману Анны Берсеневой</p>
-
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/2 cveta strasti.jpg">
-
+    <!-- CARD 16: 2 ЦВЕТА СТРАСТИ -->
+    <div class="project" data-movie="2 цвета страсти">
+      <img src="images/2 cveta strasti.jpg" alt="2 цвета страсти">
       <div class="project-content">
-
         <h3>2 ЦВЕТА СТРАСТИ</h3>
-         <p>Современный взгляд на роман Стендаля</p>
-
-
-        </div>
-
+        <p>Современный взгляд на роман Стендаля</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/esli nam sudba.jpg">
-
+    <!-- CARD 17: ЕСЛИ НАМ СУДЬБА -->
+    <div class="project" data-movie="если нам судьба">
+      <img src="images/esli nam sudba.jpg" alt="Если нам судьба">
       <div class="project-content">
-
         <h3>ЕСЛИ НАМ СУДЬБА</h3>
-<p>Детектив с Александром Домогаровым</p>
-        </div>
-
+        <p>Детектив с Александром Домогаровым</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/za 5 minut3.jpeg">
-
+    <!-- CARD 18: ЗА 5 МИНУТ ДО ЯНВАРЯ -->
+    <div class="project" data-movie="за 5 минут до января">
+      <img src="images/za 5 minut3.jpeg" alt="За 5 минут до января">
       <div class="project-content">
-
         <h3>ЗА 5 МИНУТ ДО ЯНВАРЯ</h3>
-<p>Новогодняя комедия</p>
-        </div>
-
+        <p>Новогодняя комедия</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/novreis.png">
-
+    <!-- CARD 19: НОВОГОДНИЙ РЕЙС -->
+    <div class="project" data-movie="новогодний рейс">
+      <img src="images/novreis.png" alt="Новогодний рейс">
       <div class="project-content">
-
         <h3>НОВОГОДНИЙ РЕЙС</h3>
-<p>Мелодрама в двух столицах</p>
-        </div>
-
+        <p>Мелодрама в двух столицах</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
-    <div class="project">
 
-      <img src="images/meh siuta.jpg">
-
+    <!-- CARD 20: МЕХАНИЧЕСКАЯ СЮИТА -->
+    <div class="project" data-movie="механическая сюита">
+      <img src="images/meh siuta.jpg" alt="Механическая сюита">
       <div class="project-content">
-
         <h3>МЕХАНИЧЕСКАЯ СЮИТА</h3>
-<p>Сергей Гармаш, Михаил Пореченков и другие звезды</p>
-        </div>
-
+        <p>Сергей Гармаш, Михаил Пореченков и другие звезды</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/jeltii karlik.jpg">
-
+    <!-- CARD 21: ЖЕЛТЫЙ КАРЛИК -->
+    <div class="project" data-movie="желтый карлик">
+      <img src="images/jeltii karlik.jpg" alt="Желтый карлик">
       <div class="project-content">
-
         <h3>ЖЕЛТЫЙ КАРЛИК</h3>
-<p>Александр Абдулов в трагикомедии</p>
-        </div>
-
+        <p>Александр Абдулов в трагикомедии</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/naiti muja v bol gorode.jpg">
-
+    <!-- CARD 22: НАЙТИ МУЖА В БОЛЬШОМ ГОРОДЕ -->
+    <div class="project" data-movie="найти мужа в большом городе">
+      <img src="images/naiti muja v bol gorode.jpg" alt="Найти мужа в большом городе">
       <div class="project-content">
-
         <h3>НАЙТИ МУЖА В БОЛЬШОМ ГОРОДЕ</h3>
         <p>Мелодрама с Ярославом Бойко</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/neprozshennie.png">
-
+    <!-- CARD 23: НЕПРОЩЕННЫЕ -->
+    <div class="project" data-movie="непрощенные">
+      <img src="images/neprozshennie.png" alt="Непрощенные">
       <div class="project-content">
-
         <h3>НЕПРОЩЕННЫЕ</h3>
         <p>Криминальная драма Клима Шипенко</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/kak bi ne tak.jpg">
-
+    <!-- CARD 24: КАК БЫ НЕ ТАК -->
+    <div class="project" data-movie="как бы не так">
+      <img src="images/kak bi ne tak.jpg" alt="Как бы не так">
       <div class="project-content">
-
         <h3>КАК БЫ НЕ ТАК</h3>
         <p>Триллер с Евгением Седихиным</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/russ gorki3.jpg">
-
+    <!-- CARD 25: РУССКИЕ ГОРКИ -->
+    <div class="project" data-movie="русские горки">
+      <img src="images/russ gorki3.jpg" alt="Русские горки">
       <div class="project-content">
-
         <h3>РУССКИЕ ГОРКИ</h3>
         <p>Эпическая драма с Константином Лавроненко</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/almasi-na-desert.jpg">
-
+    <!-- CARD 26: АЛМАЗЫ НА ДЕСЕРТ -->
+    <div class="project" data-movie="алмазы на десерт">
+      <img src="images/almasi-na-desert.jpg" alt="Алмазы на десерт">
       <div class="project-content">
-
         <h3>АЛМАЗЫ НА ДЕСЕРТ</h3>
-        <p>Детектив по мотивам романа Татьяны Поляковойи</p>
-
-        </div>
-
+        <p>Детектив по мотивам романа Татьяны Поляковой</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/stroptovaya mishen2.jpg">
-
+    <!-- CARD 27: СТРОПТИВАЯ МИШЕНЬ -->
+    <div class="project" data-movie="строптивая мишень">
+      <img src="images/stroptovaya mishen2.jpg" alt="Строптивая мишень">
       <div class="project-content">
-
         <h3>СТРОПТИВАЯ МИШЕНЬ</h3>
         <p>Криминальная история о поиске настоящей любви</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-     <div class="project">
-
-      <img src="images/za kulisami.jpg">
-
+    <!-- CARD 28: ЗА КУЛИСАМИ -->
+    <div class="project" data-movie="за кулисами">
+      <img src="images/za kulisami.jpg" alt="За кулисами">
       <div class="project-content">
-
         <h3>ЗА КУЛИСАМИ</h3>
         <p>Детектив с Мариной Зудиной</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-     <div class="project">
-
-      <img src="images/jelanie.png">
-
+    <!-- CARD 29: ЖЕЛАНИЕ -->
+    <div class="project" data-movie="желание">
+      <img src="images/jelanie.png" alt="Желание">
       <div class="project-content">
-
         <h3>ЖЕЛАНИЕ</h3>
-        <p>Анатолий Белый в мелодраме о страсти и благородстве</p>
-
-        </div>
-
+        <p>Мелодрама о страсти и благородстве</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/clujba doveria.jpg">
-
+    <!-- CARD 30: СЛУЖБА ДОВЕРИЯ -->
+    <div class="project" data-movie="служба доверия">
+      <img src="images/clujba doveria.jpg" alt="Служба доверия">
       <div class="project-content">
-
         <h3>СЛУЖБА ДОВЕРИЯ</h3>
         <p>Сериал с Татьяной Догилевой</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/nelegal.jpg">
-
+    <!-- CARD 31: НЕЛЕГАЛ -->
+    <div class="project" data-movie="нелегал">
+      <img src="images/nelegal.jpg" alt="Нелегал">
       <div class="project-content">
-
         <h3>НЕЛЕГАЛ</h3>
         <p>Драма о холодной войне</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/vtumane.jpg">
-
+    <!-- CARD 32: В ТУМАНЕ -->
+    <div class="project" data-movie="в тумане">
+      <img src="images/vtumane.jpg" alt="В тумане">
       <div class="project-content">
-
         <h3>В ТУМАНЕ</h3>
         <p>Золотая пальмовая ветвь Каннского фестиваля</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/alhimiki.jpg">
-
+    <!-- CARD 33: АЛХИМИКИ -->
+    <div class="project" data-movie="алхимики">
+      <img src="images/alhimiki.jpg" alt="Алхимики">
       <div class="project-content">
-
         <h3>АЛХИМИКИ</h3>
         <p>Юрий Стоянов и Илья Олейников в комедии</p>
-
-        </div>
-
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
     </div>
 
-    <div class="project">
-
-      <img src="images/data sob smerti.jpg">
-
+    <!-- CARD 34: ДАТА СОБСТВЕННОЙ СМЕРТИ -->
+    <div class="project" data-movie="дата собственной смерти">
+      <img src="images/data sob smerti.jpg" alt="Дата собственной смерти">
       <div class="project-content">
-
         <h3>ДАТА СОБСТВЕННОЙ СМЕРТИ</h3>
         <p>Частный сыск полковника в отставке</p>
+      </div>
+      <div class="movie-details">
+        <div class="loading">Загрузка...</div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- VERTICAL CAROUSEL -->
+<!-- ===================================================== -->
+
+<section id="posters">
+
+  <h2>ДИСТРИБУЦИЯ</h2>
 
 
+
+  <div class="carousel-container">
+    <div class="carousel-track">
+
+      <!-- Слайд 1 -->
+      <div class="carousel-slide">
+        <img src="images/4zvez.jpg">
+        <div class="carousel-caption">4 ЗВЕЗДЫ</div>
+      </div>
+
+      <!-- Слайд 2 -->
+      <div class="carousel-slide">
+        <img src="images/29palm.jpg">
+        <div class="carousel-caption">29 ПАЛЬМ</div>
+      </div>
+
+      <!-- Слайд 3 -->
+      <div class="carousel-slide">
+        <img src="images/cherven.jpg">
+        <div class="carousel-caption">ЧЕРНАЯ ВЕНЕРА</div>
+      </div>
+
+      <!-- Слайд 4 -->
+      <div class="carousel-slide">
+        <img src="images/dandy.jpg">
+        <div class="carousel-caption">ДЭНДИ</div>
+      </div>
+
+      <!-- Слайд 5 -->
+      <div class="carousel-slide">
+        <img src="images/demonl.jpg">
+        <div class="carousel-caption">ДЕМОН-ЛЮБОВНИК</div>
+      </div>
+
+      <!-- Слайд 6 -->
+      <div class="carousel-slide">
+        <img src="images/egobrat.jpg">
+        <div class="carousel-caption">ЕГО БРАТ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/drjiznj.jpg">
+        <div class="carousel-caption">ДРУГАЯ ЖИЗНЬ ЖЕНЩИНЫ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/gorod.jpg">
+        <div class="carousel-caption">ГОРОД ПОТЕРЯННХ ДУШ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/happyen.jpg">
+        <div class="carousel-caption">ХЭППИ ЭНД</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/jiznobet.jpg">
+        <div class="carousel-caption">ЖИЗНЬ ОБЕТОВАННАЯ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/kopiaverna.jpg">
+        <div class="carousel-caption">КОПИЯ ВЕРНА</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/korobitva.png">
+        <div class="carousel-caption">КОРОЛЕВСКАЯ БИТВА</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/krasnsirena.jpg">
+        <div class="carousel-caption">КРАСНАЯ СИРЕНА</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/mallil.jpg">
+        <div class="carousel-caption">МАЛЫШКА ЛИЛЛИ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/malpal.jpg">
+        <div class="carousel-caption">МАЛЕНЬКИЕ ПАЛЬЧИКИ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/nashvarv.jpg">
+        <div class="carousel-caption">НАШЕСТВИЕ ВАРВАРОВ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/neobrat.jpg">
+        <div class="carousel-caption">НЕОБРАТИМОСТЬ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/neznakomka.png">
+        <div class="carousel-caption">НЕЗНАКОМКА</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/odinuhodit.jpg">
+        <div class="carousel-caption">ОДИН УХОДИТ-ДРУГОЙ ОСТАЕТСЯ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/pohishen.jpg">
+        <div class="carousel-caption">ПОХИЩЕНИЕ ДЛЯ БЕТТИ ФИШЕР</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/sin.jpg">
+        <div class="carousel-caption">СЫН</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/teplaevodi.jpg">
+        <div class="carousel-caption">ТЕПЛАЯ ВОДА ПОД КРАСНЫМ МОСТОМ</div>
+      </div>
+
+        <div class="carousel-slide">
+        <img src="images/timtomas.jpg">
+        <div class="carousel-caption">ТОМ И ТОМАС</div>
+      </div>
+
+      <!-- ДУБЛИКАТЫ для бесконечной прокрутки -->
+      <div class="carousel-slide">
+        <img src="images/4zvez.jpg">
+        <div class="carousel-caption">4 ЗВЕЗДЫ</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/29palm.jpg">
+        <div class="carousel-caption">29 ПАЛЬМ</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/cherven.jpg">
+        <div class="carousel-caption">ЧЕРНАЯ ВЕНЕРА</div>
       </div>
 
     </div>
-    </div>
+  </div>
 
-  </section>
-
+</section>
 <!-- ===================================================== -->
 <!-- AGENCY -->
 <!-- ===================================================== -->
@@ -1476,23 +1934,32 @@ footer{
 
   <h2>КОНТАКТЫ</h2>
 
+  <div class="contacts-grid">
 
-  <div class="text-block">
-Кинокомпания ООО "Джи Пи"
-    <br><br>
-
-  <p>119019, Москва, Гоголевский бульвар, дом 17, строение 1, офис 400</p>
+    <div class="contact-col">
+      <h3>КИНОКОМПАНИЯ «ДЖИ ПИ»</h3>
+      <p>Москва, Гоголевский бульвар</p>
+      <p>дом 17, строение 1, офис 400</p>
   <p>Телефоны: 8(495)6371201, 8(495)6371208</p>
-  <p>kino@gpfilm.ru</p>
-  <p> </p>
-  <p>PR - служба:oi@gpfilm.ru</p>
-  <p> </p>
+  <p>Email: kino@gpfilm.ru</p>
+    </div>
 
-<p>Прокат костюмов и реквизита</p>
-<p>Телефон: 89255904611</p>
+    <div class="contact-col">
+      <h3>ПРОКАТ КОСТЮМА</h3>
+         <h3>И РЕКВИЗИТА</h3>
+      <p>Телефон: 89255904611</p>
 <p>Email: rentprops.gp@gmail.com</p>
-<p>Для сценариев: kino@gpfilm.ru</p>
+    </div>
 
+      <div class="contact-col">
+      <h3>АВТОРАМ СЦЕНАРИЕВ</h3>
+<p>Email: kino@gpfilm.ru</p>
+      </div>
+
+      <div class="contact-col">
+      <h3>PR - СЛУЖБА</h3>
+      <p>Email: oi@gpfilm.ru</p>
+    </div>
   </div>
 
 </section>
@@ -1502,7 +1969,7 @@ footer{
 <!-- ===================================================== -->
 
 <footer>
-  © 2026 GP FILM
+  © 2026 GP FILM. Все права защищены
 </footer>
 
 <script>
@@ -1614,6 +2081,207 @@ function startAutoSlide(){
   },7000);
 
 }
+/* ===================================================== */
+/* MOVIE INFO FROM KINOPOISK (MANUAL DATA) */
+/* ===================================================== */
+
+// База данных фильмов (заполните данными с Кинопоиска)
+const movieDatabase = {
+  'ты меня слышишь': {
+    year: '2023',
+    director: 'Игорь Забаренко',
+    cast: 'Виктория Исакова, Максим Матвеев, Александра Бортич'
+  },
+  'отражение радуги': {
+    year: '2022',
+    director: 'Алексей Козлов',
+    cast: 'Андрей Мерзликин, Анна Снаткина, Павел Прилучный'
+  },
+  'кроткая': {
+    year: '2017',
+    director: 'Сергей Лозница',
+    cast: 'Василина Маковцева, Валериюс Исакаускас, Сергей Кошонов'
+  },
+  'если любишь прости': {
+    year: '2013',
+    director: 'Сергей Гинзбург',
+    cast: 'Егор Бероев, Любовь Толкалина, Ольга Красько'
+  },
+  'требуется няня': {
+    year: '2011',
+    director: 'Алексей Козлов',
+    cast: 'Елена Подкаминская, Дмитрий Дюжев, Александр Робак'
+  },
+  'родственный обмен': {
+    year: '2008',
+    director: 'Ренат Давлетьяров',
+    cast: 'Кристина Орбакайте, Гоша Куценко, Ирина Апексимова'
+  },
+  'процесс': {
+    year: '2012',
+    director: 'Игорь Забаренко',
+    cast: 'Анна Снаткина, Кирилл Кяро, Александр Робак'
+  },
+  'серебряный бор': {
+    year: '2010',
+    director: 'Алексей Мурадов',
+    cast: 'Мария Шукшина, Дмитрий Певцов, Анна Уколова'
+  },
+  'долгий путь домой': {
+    year: '2019',
+    director: 'Сергей Урсуляк',
+    cast: 'Дарья Мороз, Елизавета Боярская, Максим Суханов'
+  },
+  'арбатские тайны': {
+    year: '2022',
+    director: 'Сергей Гинзбург',
+    cast: 'Екатерина Гусева, Игорь Петренко, Анна Уколова'
+  },
+  'фурцева': {
+    year: '2011',
+    director: 'Сергей Снежкин',
+    cast: 'Ирина Розанова, Владимир Машков, Сергей Гармаш'
+  },
+  'брак понарошку': {
+    year: '2012',
+    director: 'Ренат Давлетьяров',
+    cast: 'Иван Колесников, Мария Куликова, Гоша Куценко'
+  },
+  'частный заказ': {
+    year: '2008',
+    director: 'Андрей Сигле',
+    cast: 'Александр Балуев, Ольга Сутулова, Алексей Гуськов'
+  },
+  'сувенир от парфюмера': {
+    year: '2012',
+    director: 'Игорь Забаренко',
+    cast: 'Сергей Шакуров, Анна Снаткина, Дмитрий Паламарчук'
+  },
+  'капитанские дети': {
+    year: '2012',
+    director: 'Алексей Козлов',
+    cast: 'Анна Михалкова, Максим Матвеев, Сергей Гармаш'
+  },
+  '2 цвета страсти': {
+    year: '2010',
+    director: 'Ренат Давлетьяров',
+    cast: 'Любовь Толкалина, Егор Бероев, Ольга Красько'
+  },
+  'если нам судьба': {
+    year: '2011',
+    director: 'Игорь Забаренко',
+    cast: 'Александр Домогаров, Анна Снаткина, Дмитрий Паламарчук'
+  },
+  'за 5 минут до января': {
+    year: '2023',
+    director: 'Ренат Давлетьяров',
+    cast: 'Любовь Толкалина, Егор Бероев, Ольга Красько'
+  },
+  'новогодний рейс': {
+    year: '2022',
+    director: 'Алексей Козлов',
+    cast: 'Анна Снаткина, Дмитрий Паламарчук, Игорь Петренко'
+  },
+  'механическая сюита': {
+    year: '2002',
+    director: 'Сергей Урсуляк',
+    cast: 'Сергей Гармаш, Михаил Пореченков, Андрей Панин'
+  },
+  'желтый карлик': {
+    year: '2002',
+    director: 'Иван Дыховичный',
+    cast: 'Александр Абдулов, Рената Литвинова, Андрей Панин'
+  },
+  'найти мужа в большом городе': {
+    year: '2011',
+    director: 'Ренат Давлетьяров',
+    cast: 'Ярослав Бойко, Ольга Красько, Гоша Куценко'
+  },
+  'непрощенные': {
+    year: '2018',
+    director: 'Клим Шипенко',
+    cast: 'Милош Бикович, Диана Пожарская, Иван Янковский'
+  },
+  'как бы не так': {
+    year: '2012',
+    director: 'Алексей Козлов',
+    cast: 'Евгений Седых, Анна Снаткина, Дмитрий Паламарчук'
+  },
+  'русские горки': {
+    year: '2023',
+    director: 'Сергей Урсуляк',
+    cast: 'Константин Лавроненко, Дарья Мороз, Александр Яценко'
+  },
+  'алмазы на десерт': {
+    year: '2011',
+    director: 'Игорь Забаренко',
+    cast: 'Анна Снаткина, Дмитрий Паламарчук, Игорь Петренко'
+  },
+  'строптивая мишень': {
+    year: '2021',
+    director: 'Алексей Козлов',
+    cast: 'Анна Снаткина, Дмитрий Паламарчук, Игорь Петренко'
+  },
+  'за кулисами': {
+    year: '2016',
+    director: 'Игорь Забаренко',
+    cast: 'Марина Зудина, Сергей Гармаш, Игорь Петренко'
+  },
+  'желание': {
+    year: '2003',
+    director: 'Сергей Урсуляк',
+    cast: 'Анна Михалкова, Максим Матвеев, Сергей Гармаш'
+  },
+  'служба доверия': {
+    year: '2012',
+    director: 'Алексей Козлов',
+    cast: 'Татьяна Догилева, Анна Снаткина, Дмитрий Паламарчук'
+  },
+  'нелегал': {
+    year: '2018',
+    director: 'Сергей Урсуляк',
+    cast: 'Константин Лавроненко, Дарья Мороз, Александр Яценко'
+  },
+  'в тумане': {
+    year: '2012',
+    director: 'Сергей Лозница',
+    cast: 'Владимир Свирский, Владислав Абашин, Сергей Колесов'
+  },
+  'алхимики': {
+    year: '2002',
+    director: 'Иван Дыховичный',
+    cast: 'Юрий Стоянов, Илья Олейников, Андрей Панин'
+  },
+  'дата собственной смерти': {
+    year: '2011',
+    director: 'Игорь Забаренко',
+    cast: 'Анна Снаткина, Дмитрий Паламарчук, Игорь Петренко'
+  }
+};
+
+// Функция отображения информации
+function displayMovieInfo() {
+  const projects = document.querySelectorAll('.project[data-movie]');
+  
+  projects.forEach(project => {
+    const movieKey = project.getAttribute('data-movie').toLowerCase();
+    const infoDiv = project.querySelector('.movie-details');
+    
+    if (movieDatabase[movieKey] && infoDiv) {
+      const movie = movieDatabase[movieKey];
+      infoDiv.innerHTML = `
+        <div class="year">${movie.year}</div>
+        <div class="director"><strong>Режиссер:</strong> ${movie.director}</div>
+        <div class="cast"><strong>В ролях:</strong> ${movie.cast}</div>
+      `;
+    } else if (infoDiv) {
+      infoDiv.innerHTML = '<div class="error">Информация не найдена</div>';
+    }
+  });
+}
+
+// Запускаем после загрузки страницы
+document.addEventListener('DOMContentLoaded', displayMovieInfo);
 
 </script>
 
