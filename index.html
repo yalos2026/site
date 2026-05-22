@@ -2147,34 +2147,23 @@ footer{
 
 <script>
 
+
 /* ===================================================== */
-/* REVEAL ANIMATION */
+/* REVEAL ANIMATION (ОБНОВЛЁННЫЙ) */
 /* ===================================================== */
 
-const animatedElements = 
-document.querySelectorAll('.project, .award-card');
+const scrollElements = document.querySelectorAll('.project, .award-card'); // ← добавили .award-card
 
-const observer =
-new IntersectionObserver(entries => {
-
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-
     if(entry.isIntersecting){
-
       entry.target.classList.add('show');
-
     }
-
   });
+},{ threshold: 0.15 });
 
-},{
-  threshold:.15
-});
-
-projects.forEach(project => {
-
-  observer.observe(project);
-
+scrollElements.forEach(el => {
+  observer.observe(el);
 });
 
 /* ===================================================== */
