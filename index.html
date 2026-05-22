@@ -1049,6 +1049,101 @@ footer{
     display: none;
   }
 }
+/* ===================================================== */
+/* AWARDS SECTION */
+/* ===================================================== */
+
+#awards {
+  padding: 120px 8%;
+  position: relative;
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  margin-top: 50px;
+}
+
+.award-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 20px;
+  padding: 40px 25px 30px;
+  text-align: center;
+  
+  /* Анимация появления (как у карточек проектов) */
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(.17,.85,.438,.99);
+}
+
+.award-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.award-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 25px 60px rgba(212, 175, 55, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.award-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 22px;
+  filter: drop-shadow(0 6px 16px rgba(212, 175, 55, 0.25));
+  transition: transform 0.5s ease;
+}
+
+.award-card:hover .award-icon {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.award-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.award-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.award-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #D4AF37;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.award-film {
+  font-size: 14px;
+  opacity: 0.7;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  #awards { padding: 70px 5%; }
+  .awards-grid { gap: 20px; }
+  .award-card { padding: 30px 20px 25px; }
+  .award-icon { width: 70px; height: 70px; }
+  .award-card h3 { font-size: 15px; }
+  .award-meta { font-size: 12px; }
+  .award-film { font-size: 13px; }
+}  
 </style>
 </head>
 
@@ -1074,6 +1169,7 @@ footer{
     <a href="#showreel">ШОУРИЛ</a>
     <a href="#projects">ПРОЕКТЫ</a>
     <a href="#posters">ДИСТРИБУЦИЯ</a>
+    <a href="#awards">НАГРАДЫ</a>
     <a href="#agency">АВТОРАМ</a>
     <a href="#contacts">КОНТАКТЫ</a>
 
@@ -1899,6 +1995,83 @@ footer{
   </div>
 
 </section>
+
+<!-- ===================================================== -->
+<!-- AWARDS -->
+<!-- ===================================================== -->
+
+<section id="awards">
+
+  <h2>НАГРАДЫ И ПРИЗЫ</h2>
+
+  <div class="awards-grid">
+
+    <!-- CARD 1 -->
+    <div class="award-card">
+      <div class="award-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8860B"/></linearGradient></defs>
+          <path d="M50 12 L55 32 L76 32 L59 45 L66 66 L50 55 L34 66 L41 45 L24 32 L45 32 Z" fill="url(#gold1)"/>
+          <circle cx="50" cy="50" r="38" stroke="url(#gold1)" stroke-width="2" fill="none" stroke-dasharray="3 5" opacity="0.8"/>
+        </svg>
+      </div>
+      <h3>Золотая пальмовая ветвь</h3>
+      <p class="award-meta">Каннский кинофестиваль • 2012</p>
+      <p class="award-film">Фильм «В тумане»</p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="award-card">
+      <div class="award-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8860B"/></linearGradient></defs>
+          <path d="M30 40 Q50 20 70 40 Q75 55 65 65 Q50 75 35 65 Q25 55 30 40 Z" fill="url(#gold2)"/>
+          <path d="M20 50 Q15 70 25 80 L35 75" stroke="url(#gold2)" stroke-width="2" fill="none"/>
+          <path d="M80 50 Q85 70 75 80 L65 75" stroke="url(#gold2)" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="50" r="12" fill="#060B1F" stroke="url(#gold2)" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Лучший иностранный фильм</h3>
+      <p class="award-meta">Премия «Ника» • 2013</p>
+      <p class="award-film">Фильм «В тумане»</p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="award-card">
+      <div class="award-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="gold3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8860B"/></linearGradient></defs>
+          <rect x="25" y="30" width="50" height="40" rx="4" fill="none" stroke="url(#gold3)" stroke-width="2"/>
+          <circle cx="50" cy="50" r="14" fill="none" stroke="url(#gold3)" stroke-width="2"/>
+          <circle cx="50" cy="50" r="5" fill="url(#gold3)"/>
+          <path d="M15 35 L25 35 M75 35 L85 35 M15 65 L25 65 M75 65 L85 65" stroke="url(#gold3)" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Приз зрительских симпатий</h3>
+      <p class="award-meta">Фестиваль «Кинотавр» • 2010</p>
+      <p class="award-film">Фильм «Кроткая»</p>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="award-card">
+      <div class="award-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="gold4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8860B"/></linearGradient></defs>
+          <path d="M35 45 L50 30 L65 45 L60 65 L40 65 Z" fill="url(#gold4)"/>
+          <path d="M50 30 L50 20 M35 45 L25 40 M65 45 L75 40 M60 65 L65 75 M40 65 L35 75" stroke="url(#gold4)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="50" cy="52" r="8" fill="#060B1F" stroke="url(#gold4)" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>Лучший телевизионный сериал</h3>
+      <p class="award-meta">ТЭФИ • 2011</p>
+      <p class="award-film">Сериал «Фурцева»</p>
+    </div>
+
+  </div>
+
+</section>
+
+  
 <!-- ===================================================== -->
 <!-- AGENCY -->
 <!-- ===================================================== -->
@@ -1978,8 +2151,8 @@ footer{
 /* REVEAL ANIMATION */
 /* ===================================================== */
 
-const projects =
-document.querySelectorAll('.project');
+const animatedElements = 
+document.querySelectorAll('.project, .award-card');
 
 const observer =
 new IntersectionObserver(entries => {
