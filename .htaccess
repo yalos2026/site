@@ -1,0 +1,2 @@
+AddType application/x-httpd-php .php .php7 .php8
+AddHandler application/x-httpd-php .php
